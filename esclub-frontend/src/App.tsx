@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Routes, Route, } from "react-router-dom";
-import "./App.css";
 import Clubs from "./Components/Clubs";
 import Events from "./Components/Events";
 import Home from "./Components/Home";
