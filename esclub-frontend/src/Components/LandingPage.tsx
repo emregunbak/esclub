@@ -1,22 +1,28 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Gif from "./img/ESCLUB.gif";
 
 function LandingPage() {
-    return (
-      <>
-<Navbar bg="dark" variant="dark">
+  return (
+    <>
+      <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="me-auto">
             <Nav.Link href="login">Login</Nav.Link>
             <Nav.Link href="register">Register</Nav.Link>
-
           </Nav>
         </Container>
       </Navbar>
-      </>
-    );
-  }
-  
-  export default LandingPage;
-  
+      <Container>
+        <img
+          src={Gif}
+          alt="Es Club"
+          style={{ width: "75rem", display: "block", margin: "auto" }}
+        />
+      </Container>
+    </>
+  );
+}
+
+export default LandingPage;
