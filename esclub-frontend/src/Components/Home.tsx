@@ -1,7 +1,10 @@
+import EsclubNavbar from "./EsclubNavbar";
+
 function Home() {
   return (
     <>
-      <h1>Home!!</h1>
+    <EsclubNavbar/>
+      <h1>Home</h1>
     </>
   );
 }

@@ -80,17 +80,6 @@ function Events() {
               </Carousel.Item>
             </Carousel>
           </Container>
-
-          {/* <a
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "10px",
-            }}
-          >
-            dfs
-          </a> */}
         </Container>
         <a
           style={{
@@ -120,5 +109,4 @@ function Events() {
     </div>
   );
 }
-
 export default Events;
