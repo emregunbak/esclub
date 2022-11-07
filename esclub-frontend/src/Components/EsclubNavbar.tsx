@@ -6,7 +6,7 @@ function EsclubNavbar() {
     <>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Nav className="me-auto">
+          <Nav className="ms-auto">
             <Nav.Link href="home">Home</Nav.Link>
             <Nav.Link href="clubs">Clubs</Nav.Link>
             <Nav.Link href="events">Events</Nav.Link>
