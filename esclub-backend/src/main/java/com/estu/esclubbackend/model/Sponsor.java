@@ -11,14 +11,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Sponsor extends BaseEntity{
+public class Sponsor extends BaseEntity {
+
+    @Column
     private String sponsorName;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "club_sponsors",
-    joinColumns = @JoinColumn(name = "club_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "sponsor_id",
-    referencedColumnName = "id"))
-    private List<Club> club;
+            joinColumns = @JoinColumn(name = "club_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "sponsor_id", referencedColumnName = "id")
+    )
+    private List<Club> clubs;
+
+    @Column
     private String description;
 //    private Image logo;
 }
+
