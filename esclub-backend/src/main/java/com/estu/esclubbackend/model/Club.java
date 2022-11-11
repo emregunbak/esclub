@@ -2,6 +2,7 @@ package com.estu.esclubbackend.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ public class Club extends BaseEntity{
     private List<Event> events;
     @OneToMany(mappedBy = "club")
     private List<Announcement> announcements;
-    @ManyToMany(mappedBy = "clubs")
+    @ManyToMany(mappedBy = "club")
     private List<Sponsor> sponsors;
 //    @OneToMany
 //    private List<Student> members;
