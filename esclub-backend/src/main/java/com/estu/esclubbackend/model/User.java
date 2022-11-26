@@ -19,7 +19,8 @@ public class User extends BaseEntity{
     @Column
     private String surname;
 
-    //private String email;
+    @Column
+    private String email;
     //spring email
 
 }

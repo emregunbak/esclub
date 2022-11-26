@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "sponsor")
 public class Sponsor extends BaseEntity{
     private String sponsorName;
     @ManyToMany(cascade = CascadeType.ALL)
