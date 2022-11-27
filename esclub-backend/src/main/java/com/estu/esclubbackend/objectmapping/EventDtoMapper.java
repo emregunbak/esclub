@@ -8,8 +8,8 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public abstract class EventDtoMapper {
 
-    @Mapping(target = "club.id", source = "source.clubId")
-    @Mapping(target = "id", source = "source.eventId")
-    public abstract Event map(EventDto source);
+//    @Mapping(target = "club.id", source = "source.clubId")
+//    @Mapping(target = "id", source = "source.eventId")
+//    public abstract Event map(EventDto source);
 
 }

@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -14,7 +15,7 @@ import java.util.List;
 @Table(name = "announcement")
 public class Announcement extends BaseEntity {
     @ManyToOne
-    @JoinColumn(name = "club_id")
+    @JoinColumn(name = "club_id", referencedColumnName = "id")
     private Club club;
     private String title;
     private String body;

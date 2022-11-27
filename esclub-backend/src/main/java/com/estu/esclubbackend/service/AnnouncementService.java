@@ -51,4 +51,17 @@ public class AnnouncementService {
 
         return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
     }
+
+    public String deleteAnnouncement(Long id){
+        announcementRepository.deleteById(id);
+        return String.format("Deleted announcement id: %s", id);
+    }
+
+//    public AnnouncementDto updateAnnouncement(Long id, AnnouncementRequest request) {
+//        var announcement = announcementRepository.findById(id);
+//
+//        if (announcement.isPresent()){
+//
+//        }
+//    }
 }
