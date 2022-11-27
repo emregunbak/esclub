@@ -7,6 +7,8 @@ import lombok.Data;
 public class EventDto {
 
     private Event event;
+    private String eventName;
+    private String description;
     private Integer eventId;
     private Integer clubId;
 

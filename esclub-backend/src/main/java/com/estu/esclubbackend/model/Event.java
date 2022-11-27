@@ -1,5 +1,6 @@
 package com.estu.esclubbackend.model;
 
+import com.estu.esclubbackend.enums.EventStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,4 +25,6 @@ public class Event extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images;
+    @Enumerated(EnumType.STRING)
+    private EventStatus eventStatus;
 }
