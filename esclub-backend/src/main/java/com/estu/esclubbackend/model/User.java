@@ -1,5 +1,6 @@
 package com.estu.esclubbackend.model;
 
+import com.estu.esclubbackend.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,10 +9,10 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 
     @Column
     private String name;
@@ -19,7 +20,10 @@ public class User extends BaseEntity{
     @Column
     private String surname;
 
-    //private String email;
-    //spring email
+    @Column
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
