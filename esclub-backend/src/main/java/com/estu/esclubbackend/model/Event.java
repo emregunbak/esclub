@@ -2,18 +2,16 @@ package com.estu.esclubbackend.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Table(name = "event")
 public class Event extends BaseEntity {
     @ManyToOne
@@ -23,4 +21,7 @@ public class Event extends BaseEntity {
     private LocalDateTime StartDate;
     private LocalDateTime EndDate;
     private String description;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
 }

@@ -6,11 +6,11 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Table(name = "sponsor")
 public class Sponsor extends BaseEntity{
     private String sponsorName;
@@ -21,5 +21,7 @@ public class Sponsor extends BaseEntity{
     referencedColumnName = "id"))
     private List<Club> club;
     private String description;
-//    private Image logo;
+
+    @OneToOne
+    private Image logo;
 }

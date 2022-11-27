@@ -2,17 +2,15 @@ package com.estu.esclubbackend.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Table(name = "announcement")
 public class Announcement extends BaseEntity{
     @ManyToOne
@@ -20,4 +18,7 @@ public class Announcement extends BaseEntity{
     private Club club;
     private String title;
     private String body;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
 }
