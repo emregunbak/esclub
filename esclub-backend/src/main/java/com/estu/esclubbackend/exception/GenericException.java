@@ -1,6 +1,6 @@
 package com.estu.esclubbackend.exception;
 
-import com.estu.esclubbackend.model.ErrorCode;
+import com.estu.esclubbackend.enums.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

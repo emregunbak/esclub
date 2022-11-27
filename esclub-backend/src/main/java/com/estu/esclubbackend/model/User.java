@@ -1,5 +1,6 @@
 package com.estu.esclubbackend.model;
 
+import com.estu.esclubbackend.enums.Role;
 import lombok.*;
 
 import javax.persistence.*;

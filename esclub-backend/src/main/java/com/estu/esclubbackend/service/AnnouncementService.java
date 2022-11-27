@@ -6,7 +6,7 @@ import com.estu.esclubbackend.dto.converter.MultipartFileConverter;
 import com.estu.esclubbackend.dto.request.AnnouncementRequest;
 import com.estu.esclubbackend.exception.GenericException;
 import com.estu.esclubbackend.model.Announcement;
-import com.estu.esclubbackend.model.ErrorCode;
+import com.estu.esclubbackend.enums.ErrorCode;
 import com.estu.esclubbackend.model.Image;
 import com.estu.esclubbackend.repository.AnnouncementRepository;
 import com.estu.esclubbackend.repository.ClubRepository;

@@ -1,4 +1,4 @@
-package com.estu.esclubbackend.model;
+package com.estu.esclubbackend.enums;
 
 public enum ErrorCode {
     CLUB_NOT_FOUND,
