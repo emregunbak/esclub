@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "announcement")
-public class Announcement extends BaseEntity{
+public class Announcement extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "club_id")
     private Club club;

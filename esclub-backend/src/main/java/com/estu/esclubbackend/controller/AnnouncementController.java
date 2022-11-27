@@ -18,12 +18,12 @@ public class AnnouncementController {
     private final AnnouncementService announcementService;
 
     @GetMapping("/")
-    public ResponseEntity<List<AnnouncementDto>> getAllAnnouncements(){
+    public ResponseEntity<List<AnnouncementDto>> getAllAnnouncements() {
         return ResponseEntity.ok(announcementService.getAllAnnouncements());
     }
 
     @PostMapping("/create-announcement")
-    public ResponseEntity<AnnouncementDto> createAnnouncement(@Valid @RequestBody AnnouncementRequest request){
+    public ResponseEntity<AnnouncementDto> createAnnouncement(@Valid @RequestBody AnnouncementRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(announcementService.createAnnouncement(request));

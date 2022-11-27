@@ -13,7 +13,7 @@ import java.io.File;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "images")
-public class Image extends BaseEntity{
+public class Image extends BaseEntity {
     private File image;
 //    private String imageUrl;
 }

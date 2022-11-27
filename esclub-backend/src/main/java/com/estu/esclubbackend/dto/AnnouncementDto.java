@@ -1,6 +1,5 @@
 package com.estu.esclubbackend.dto;
 
-import com.estu.esclubbackend.model.Club;
 import com.estu.esclubbackend.model.Image;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

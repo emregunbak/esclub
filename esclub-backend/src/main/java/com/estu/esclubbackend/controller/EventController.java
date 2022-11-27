@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/api/v1/event")
 @AllArgsConstructor
@@ -35,12 +34,12 @@ public class EventController {
     }
 
     @GetMapping
-    public List<Event> fetch(){
+    public List<Event> fetch() {
         return eventRepository.findAllNotCompleted();
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id){
+    public void delete(@PathVariable("id") Long id) {
         eventRepository.deleteById(id);
     }
 }

@@ -1,6 +1,9 @@
 package com.estu.esclubbackend.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,11 +11,10 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "club")
-public class Club extends BaseEntity{
+public class Club extends BaseEntity {
 
     private String clubName;
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
