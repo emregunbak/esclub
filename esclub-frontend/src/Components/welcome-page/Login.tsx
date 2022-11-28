@@ -1,7 +1,7 @@
 import { Button } from "reactstrap";
 import Form from "react-bootstrap/Form";
 import { Container, Card } from "react-bootstrap";
-import Logo from "./img/logo.png";
+import Logo from "../img/logo.png";
 
 function Login() {
   return (
