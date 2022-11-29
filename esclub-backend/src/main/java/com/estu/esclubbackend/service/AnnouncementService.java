@@ -41,13 +41,15 @@ public class AnnouncementService {
                     .club(clubRepository.findById(request.getClubId()).get())
                     .title(request.getTitle())
                     .body(request.getBody())
-                    .images(images).build());
+                    .images(images)
+                    .imageURL(request.getImageURL()).build());
             return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
         }
         var announcement = announcementRepository.save(Announcement.builder()
                 .club(clubRepository.findById(request.getClubId()).get())
                 .title(request.getTitle())
-                .body(request.getBody()).build());
+                .body(request.getBody())
+                .imageURL(request.getImageURL()).build());
 
         return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
     }

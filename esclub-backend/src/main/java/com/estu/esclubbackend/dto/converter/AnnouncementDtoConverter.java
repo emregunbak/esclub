@@ -11,6 +11,7 @@ public class AnnouncementDtoConverter {
                 .clubId(announcement.getClub().getId())
                 .title(announcement.getTitle())
                 .body(announcement.getBody())
-                .image(announcement.getImages()).build();
+                .image(announcement.getImages())
+                .imageURL(announcement.getImageURL()).build();
     }
 }

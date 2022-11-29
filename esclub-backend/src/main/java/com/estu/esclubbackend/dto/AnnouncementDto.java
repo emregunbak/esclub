@@ -21,4 +21,5 @@ public class AnnouncementDto {
     private String body;
     @JsonIgnore
     private List<Image> image; //image urlleri listelenecek
+    private String imageURL;
 }

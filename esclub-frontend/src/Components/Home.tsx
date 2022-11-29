@@ -1,23 +1,34 @@
 import { Button, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { Input } from "reactstrap";
-import { allClubs } from "../constant/clubsData";
 import Card from "react-bootstrap/Card";
 import { announces } from "../constant/announceData";
 import EsclubNavbar from "./EsclubNavbar";
 import "../style/Home.css";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { FaCircle } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Home() {
   const [filteredResults, setFilteredResults] = useState([] as any);
   const [searchInput, setSearchInput] = useState("");
+  const [clubs, setClubs]=useState<any[]>([])
+  const [allAnnounces, setAllAnnounces] = useState<any[]>([]);
+  useEffect(()=>{
+    axios.get('http://localhost:8080/api/v1/announcements').then((response:any)=>{
+      setAllAnnounces(response.data)
+    })
+    axios.get('http://localhost:8080/api/v1/clubs').then((response:any)=>{
+      setClubs(response.data)
+    })
+  },[clubs,allAnnounces])
+
 
   const searchItems = (searchValue: any) => {
     setSearchInput(searchValue);
 
     if (searchInput !== "") {
-      const filteredData = allClubs.filter((item: any) => {
+      const filteredData = clubs.filter((item: any) => {
         return Object.values(item)
           .join("")
           .toUpperCase()
@@ -25,10 +36,10 @@ function Home() {
       });
       setFilteredResults(filteredData);
     } else {
-      setFilteredResults(allClubs);
+      setFilteredResults(clubs);
     }
   };
-  const [allAnnounces, setAllAnnounces] = useState(announces);
+
   const handleAddAnnounce = (e: any) => {
     if (e.key === "Enter") {
       const announce = [] as any;
@@ -42,6 +53,9 @@ function Home() {
       e.target.value = "";
     }
   };
+  // const handleName=(item:any)=>{
+  //   return clubs[item-1].clubName
+  // }
   return (
     <>
       <EsclubNavbar />
@@ -65,17 +79,17 @@ function Home() {
                         href=""
                         style={{ color: "black", textDecoration: "none" }}
                       >
-                        <li style={{ marginLeft: "40px" }}>{item.name}</li>
+                        <li style={{ marginLeft: "40px" }}>{item.clubName}</li>
                       </a>
                     );
                   })
-                : allClubs.map((item) => {
+                : clubs.map((item) => {
                     return (
                       <a
                         href=""
                         style={{ color: "black", textDecoration: "none",marginLeft:"10px" }}
                       ><FaCircle size={5} />
-                        {item.name}
+                        {item.clubName}
                       </a>
                     );
                   })}
@@ -120,17 +134,17 @@ function Home() {
                 style={{ width: "100%", marginBottom: "10px" }}
                
               >
-                <Card.Header style={{backgroundColor:"#F0F0F0"}}>{item.fullName}</Card.Header>
+                <Card.Header style={{backgroundColor:"#F0F0F0"}}>{clubs[item.clubId-1].clubName}</Card.Header>
                 <Card.Body>
                   <Card.Title>
                     {" "}
                     <Image
-                      src={item.src}
+                      src={item.imageURL}
                       className="announce-pp"
                     ></Image>
-                    {item.name}
+                    {item.title}
                   </Card.Title>
-                  <Card.Text>{item.announce}</Card.Text>
+                  <Card.Text>{item.body}</Card.Text>
                 </Card.Body>
               </Card>
 
