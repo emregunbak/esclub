@@ -2,29 +2,36 @@ package com.estu.esclubbackend.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Club extends BaseEntity{
+@Table(name = "club")
+public class Club extends BaseEntity {
 
     private String clubName;
-    @OneToMany
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Event> events;
-    @OneToMany(mappedBy = "club")
+
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Announcement> announcements;
+
     @ManyToMany(mappedBy = "club")
     private List<Sponsor> sponsors;
-//    @OneToMany
-//    private List<Student> members;
-//    @OneToMany
-//    private List<ClubAdmin> team;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private List<User> members;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private List<User> team;
+
+    @OneToOne
+    private Image logo;
 }
