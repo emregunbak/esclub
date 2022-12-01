@@ -14,8 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClubDto {
+    private Long id;
     private String clubName;
-
+    private String shortName;
+    private Image logo;
     //These fields will be updated
     @JsonIgnore
     private List<Event> events;
@@ -27,6 +29,5 @@ public class ClubDto {
     private List<User> members;
     @JsonIgnore
     private List<User> team;
-    @JsonIgnore
-    private Image logo;
+
 }

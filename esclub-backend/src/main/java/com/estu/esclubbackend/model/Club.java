@@ -15,6 +15,8 @@ import java.util.List;
 public class Club extends BaseEntity {
 
     private String clubName;
+    private String shortName;
+
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Event> events;
 
