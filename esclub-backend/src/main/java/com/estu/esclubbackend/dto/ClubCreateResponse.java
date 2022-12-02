@@ -9,11 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EventDto {
-
-    private String eventName;
-    private String description;
-    private Long eventId;
-    private Long clubId;
+public class ClubCreateResponse {
+    private Long id;
     private String clubName;
+    private String shortName;
+    private ImageDto logo;
 }

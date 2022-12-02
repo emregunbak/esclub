@@ -1,52 +1,59 @@
 package com.estu.esclubbackend.controller;
 
 import com.estu.esclubbackend.dto.EventDto;
-import com.estu.esclubbackend.model.Event;
-import com.estu.esclubbackend.repository.EventRepository;
+import com.estu.esclubbackend.dto.request.EventRequest;
+import com.estu.esclubbackend.projections.EventProjection;
 import com.estu.esclubbackend.service.EventService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/events")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EventController {
 
     private final EventService eventService;
-    private final EventRepository eventRepository;
 
+    @GetMapping("/getAll")
+    public ResponseEntity<List<EventProjection>> getAllEvents() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(eventService.getAllEvent());
+    }
 
-    @GetMapping
-    public ResponseEntity<List<Event>> getAllEvents(){
-        return ResponseEntity.ok(eventService.getAllEvent());
+    @GetMapping("/getById")
+    public ResponseEntity<EventDto> getEventById(@RequestParam Long id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(eventService.getEventById(id));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<EventDto> create(@RequestBody EventDto eventDto) {
-        return ResponseEntity.ok(eventService.createEvent(eventDto));
+    public ResponseEntity<EventDto> create(@Valid @RequestBody EventRequest request) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(eventService.createEvent(request));
     }
 
-//    @PostMapping("/{id}")
-//    public void update(@PathVariable("id") Long id, @RequestBody EventDto eventDto) {
-//        Event event = eventRepository.findById(id).orElseThrow();
-//        event.setEventName(eventDto.getEventName());
-//        event.setDescription(eventDto.getDescription());
-//        event.setUpdateDate(LocalDateTime.now());
-//        eventRepository.save(event);
-//        eventService.updateEvent(eventDto);
-//    }
-
-    @GetMapping("/fetch")
-    public List<Event> fetch() {
-        return eventRepository.findAllNotCompleted();
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> delete(@RequestParam Long id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(eventService.deleteEvent(id));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        eventRepository.deleteById(id);
+    @PostMapping("/update")
+    public ResponseEntity<EventDto> update(@Valid @RequestBody EventRequest request) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(eventService.updateEvent(request));
     }
+
 }
+
+

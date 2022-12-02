@@ -11,6 +11,7 @@ import com.estu.esclubbackend.model.Image;
 import com.estu.esclubbackend.repository.AnnouncementRepository;
 import com.estu.esclubbackend.repository.ClubRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,30 +28,39 @@ public class AnnouncementService {
                 .toList();
     }
 
+    public AnnouncementDto getAnnouncementByClubId(Long clubId){
+        return AnnouncementDtoConverter.convertToAnnouncementDto(
+                announcementRepository.findAnnouncementByClubId(clubId).orElseThrow(() ->
+                            GenericException.builder().errorCode(ErrorCode.ANNOUNCEMENT_NOT_FOUND).build()
+                        ));
+    }
+
     public AnnouncementDto getAnnouncementById(Long id) {
         return AnnouncementDtoConverter.convertToAnnouncementDto(announcementRepository.findById(id).orElseThrow(() ->
-                GenericException.builder().errorCode(ErrorCode.ANNOUNCEMENT_NOT_FOUND).build()));
+                GenericException.builder().errorCode(ErrorCode.ANNOUNCEMENT_NOT_FOUND)
+                        .errorMessage("not found")
+                        .httpStatus(HttpStatus.NOT_FOUND).build()));
     }
 
-    public AnnouncementDto createAnnouncement(AnnouncementRequest request) {
-        if (request.getImages() != null) {
-            var images = request.getImages().stream().map(file ->
-                    Image.builder().image(MultipartFileConverter.convert(file)).build()).toList();
-
-            var announcement = announcementRepository.save(Announcement.builder()
-                    .club(clubRepository.findById(request.getClubId()).get())
-                    .title(request.getTitle())
-                    .body(request.getBody())
-                    .images(images).build());
-            return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
-        }
-        var announcement = announcementRepository.save(Announcement.builder()
-                .club(clubRepository.findById(request.getClubId()).get())
-                .title(request.getTitle())
-                .body(request.getBody()).build());
-
-        return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
-    }
+//    public AnnouncementDto createAnnouncement(AnnouncementRequest request) {
+//        if (request.getImages() != null) {
+//            var images = request.getImages().stream().map(file ->
+//                    Image.builder().image(MultipartFileConverter.convert(file)).build()).toList();
+//
+//            var announcement = announcementRepository.save(Announcement.builder()
+//                    .club(clubRepository.findById(request.getClubId()).get())
+//                    .title(request.getTitle())
+//                    .body(request.getBody())
+//                    .images(images).build());
+//            return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
+//        }
+//        var announcement = announcementRepository.save(Announcement.builder()
+//                .club(clubRepository.findById(request.getClubId()).get())
+//                .title(request.getTitle())
+//                .body(request.getBody()).build());
+//
+//        return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
+//    }
 
     public String deleteAnnouncement(Long id){
         announcementRepository.deleteById(id);
