@@ -19,8 +19,8 @@ public class Event extends BaseEntity {
     @JoinColumn(name = "club_id")
     private Club club;
     private String eventName;
-    private LocalDateTime StartDate;
-    private LocalDateTime EndDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private String description;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)

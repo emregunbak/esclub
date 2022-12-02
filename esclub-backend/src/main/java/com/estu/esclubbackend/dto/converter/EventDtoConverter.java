@@ -9,6 +9,7 @@ public class EventDtoConverter {
         return EventDto.builder()
                 .clubId(event.getClub().getId())
                 .eventId(event.getId())
+                .clubName(event.getClub().getClubName())
                 .eventName(event.getEventName())
                 .description(event.getDescription()).build();
     }

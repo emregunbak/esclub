@@ -19,12 +19,14 @@ import java.util.List;
 public class SpringFoxConfig {
 
     private ApiInfo apiInfo() {
-        return new ApiInfo("dsadsa Rest APIs",
-                "APIs for dsadsa.",
+        return new ApiInfo("EsClub Rest APIs",
+                "APIs for EsClub.",
                 "0.0.1-SNAPSHOT",
                 "Terms of service",
-                new Contact("dsadsa", "https://github.com/dsad9", "sdsadsa"),
-                "MIT License", "https://github.com/dsadsa",
+                new Contact("Görkem Durmaz - Ahmet Emre Günbak",
+                        "https://github.com/emregunbak/esclub",
+                        "egorkemdurmaz@gmail.com"),
+                "MIT License", "https://github.com/emregunbak/esclub",
                 Collections.emptyList());
     }
 
