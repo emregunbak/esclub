@@ -1,11 +1,7 @@
 import { Card, Container } from "react-bootstrap";
 import { Button } from "reactstrap";
 import Form from "react-bootstrap/Form";
-<<<<<<< Updated upstream
-import "../../style/Register.css";
-=======
 import "../../style/welcome-page.css";
->>>>>>> Stashed changes
 
 function ClubRegister() {
   return (

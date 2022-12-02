@@ -1,9 +1,5 @@
 import { Card } from "react-bootstrap";
-<<<<<<< Updated upstream
-import "../../style/Register.css";
-=======
 import "../../style/welcome-page.css";
->>>>>>> Stashed changes
 import React from "react";
 
 import UserRegister from "./UserRegister";
