@@ -1,14 +1,16 @@
 package com.estu.esclubbackend.controller;
 
 import com.estu.esclubbackend.dto.SponsorDto;
-import com.estu.esclubbackend.model.Sponsor;
+import com.estu.esclubbackend.dto.request.SponsorRequest;
+import com.estu.esclubbackend.projections.SponsorProjection;
 import com.estu.esclubbackend.repository.SponsorRepository;
 import com.estu.esclubbackend.service.SponsorService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,32 +19,41 @@ import java.util.List;
 public class SponsorController {
 
     private final SponsorService sponsorService;
-    private final SponsorRepository sponsorRepository;
 
-    @GetMapping
-    public ResponseEntity<List<SponsorDto>> getAllSponsors(){
-        return ResponseEntity.ok(sponsorService.getAllSponsor());
+    @GetMapping("/getAll")
+    public ResponseEntity<List<SponsorProjection>> getAllSponsors() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(sponsorService.getAllSponsor());
+    }
+
+    @GetMapping("/getById")
+    public ResponseEntity<SponsorDto> getSponsorById(@RequestParam Long id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(sponsorService.getSponsorById(id));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<SponsorDto> create(@RequestBody SponsorDto sponsorDto) {
-        return ResponseEntity.ok(sponsorService.createSponsor(sponsorDto));
+    public ResponseEntity<SponsorDto> create(@Valid @RequestBody SponsorRequest request) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(sponsorService.createSponsor(request));
     }
 
-    @PostMapping("/{id}")
-    public void update(@PathVariable("id") Long id, @RequestBody SponsorDto sponsorDto){
-        Sponsor sponsor = sponsorRepository.findById(id).orElseThrow();
-        sponsor.setSponsorName(sponsorDto.getSponsorName());
-        sponsor.setDescription(sponsorDto.getDescription());
-        sponsor.setLogo(sponsorDto.getLogo());
-        sponsor.setUpdateDate(LocalDateTime.now());
-        sponsorRepository.save(sponsor);
-        sponsorService.updateSponsor(sponsorDto);
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> delete(@RequestParam Long id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(sponsorService.deleteSponsor(id));
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<SponsorDto> update(@Valid @RequestBody SponsorRequest request) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(sponsorService.updateSponsor(request));
 
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(sponsorService.deleteSponsor(id));
-    }
 }
