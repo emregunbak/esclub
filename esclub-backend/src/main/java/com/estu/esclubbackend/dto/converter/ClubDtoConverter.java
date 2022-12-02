@@ -7,11 +7,14 @@ public class ClubDtoConverter {
 
     public static ClubDto convertToClubDto(Club club){
         return ClubDto.builder()
+                .id(club.getId())
                 .clubName(club.getClubName())
+                .shortName(club.getShortName())
                 .events(club.getEvents())
                 .announcements(club.getAnnouncements())
                 .sponsors(club.getSponsors())
                 .members(club.getMembers())
-                .team(club.getTeam()).build();
+                .team(club.getTeam())
+                .logo(club.getLogo()).build();
     }
 }

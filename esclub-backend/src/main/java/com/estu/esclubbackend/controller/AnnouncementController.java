@@ -22,12 +22,17 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcementService.getAllAnnouncements());
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<AnnouncementDto> createAnnouncement(@Valid @RequestBody AnnouncementRequest request){
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(announcementService.createAnnouncement(request));
+    @GetMapping("/club")
+    public ResponseEntity<AnnouncementDto> getAnnouncementByClubId(@RequestParam Long clubId){
+        return ResponseEntity.ok(announcementService.getAnnouncementByClubId(clubId));
     }
+
+//    @PostMapping("/create")
+//    public ResponseEntity<AnnouncementDto> createAnnouncement(@Valid @RequestBody AnnouncementRequest request){
+//        return ResponseEntity
+//                .status(HttpStatus.CREATED)
+//                .body(announcementService.createAnnouncement(request));
+//    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteAnnouncement(@PathVariable Long id){

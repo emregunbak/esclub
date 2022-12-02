@@ -13,21 +13,20 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClubDto {
+public class ClubDetailsDto {
+
     private Long id;
     private String clubName;
     private String shortName;
     private Image logo;
-    //These fields will be updated
-    @JsonIgnore
+
     private List<Event> events;
     @JsonIgnore
-    private List<Announcement> announcements;
+    private List<AnnouncementDto> announcements;
     @JsonIgnore
     private List<Sponsor> sponsors;
     @JsonIgnore
     private List<User> members;
     @JsonIgnore
     private List<User> team;
-
 }
