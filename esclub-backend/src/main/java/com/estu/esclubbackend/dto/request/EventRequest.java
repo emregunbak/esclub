@@ -19,6 +19,9 @@ public class EventRequest {
     @NotNull
     private Long clubId;
 
+    @NotNull
+    private String clubName;
+
     private Long eventId;
     @NotBlank
     private String description;
