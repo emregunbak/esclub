@@ -14,7 +14,9 @@ import java.util.List;
 @Table(name = "club")
 public class Club extends BaseEntity {
 
+    @Column(unique = true)
     private String clubName;
+    @Column(unique = true)
     private String shortName;
 
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)

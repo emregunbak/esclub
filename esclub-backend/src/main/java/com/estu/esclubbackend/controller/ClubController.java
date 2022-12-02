@@ -28,11 +28,16 @@ public class ClubController {
         return ResponseEntity.ok(clubService.getAllClubs());
     }
 
+//    @GetMapping("/details")
+//    public ResponseEntity<?> getAllClubDetails(){
+//        return ResponseEntity.ok(clubService.getAllClubDetails());
+//    }
+
     @PostMapping("/create")
     public ResponseEntity<ClubCreateResponse> createClub(
             @RequestParam String clubName,
             @RequestParam String shortName,
-            @RequestParam MultipartFile logo) throws IOException {
+            @RequestParam MultipartFile logo) throws Exception {
         var clubLogo = imageService.uploadImage(logo, shortName);
         ClubDto club = ClubDto.builder().clubName(clubName).shortName(shortName).logo(clubLogo).build();
         return ResponseEntity
@@ -47,8 +52,8 @@ public class ClubController {
     }
 
     @GetMapping("/download-file")
-    public ResponseEntity<?> downloadImage(@RequestParam String fileName){
-        var imageData = imageService.downloadImage(fileName);
+    public ResponseEntity<?> downloadImage(@RequestParam Long imageId){
+        var imageData = imageService.downloadImage(imageId);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.IMAGE_PNG)
                 .body(imageData);

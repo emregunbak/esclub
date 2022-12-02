@@ -38,8 +38,8 @@ public class ImageService {
         return imageRepository.save(image);
     }
 
-    public byte[] downloadImage(String fileName){
-        var image = imageRepository.findByName(fileName);
+    public byte[] downloadImage(Long id){
+        var image = imageRepository.findById(id);
         return ImageUtils.decompressImage(image.get().getImageData());
     }
 }
