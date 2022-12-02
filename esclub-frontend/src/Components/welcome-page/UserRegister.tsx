@@ -1,7 +1,7 @@
 import { Card, Container } from "react-bootstrap";
 import { Button } from "reactstrap";
 import Form from "react-bootstrap/Form";
-import "../../style/Register.css";
+import "../../style/welcome-page.css";
 
 function UserRegister() {
   return (

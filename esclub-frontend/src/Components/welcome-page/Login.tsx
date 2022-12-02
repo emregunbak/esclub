@@ -1,50 +1,78 @@
-import { Button } from "reactstrap";
+import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Container, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Logo from "../img/logo.png";
+import "../../style/welcome-page.css";
 
 function Login() {
   return (
-    <Card style={{ width: "30rem", margin: "auto" }} border="danger">
-      {/* <Card.Img variant="top" src="esclub-frontend/src/Components/img/logo.png" /> */}
-      <a href="LandingPage">
-        <img
-          src={Logo}
-          alt="Es Club"
-          style={{ width: "10rem", display: "block", margin: "auto" }}
-        />
-      </a>
-      <Container className="d-grid h-100 w-75 py-2">
-        <h1 className="text-center">Login</h1>
-        <Form className="p-3 w-100">
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
+    <>
+      <style type="text/css">
+        {`
+    .btn-danger {
+      background-color:#8E1916;
+      color: white;
+      font-weight: bold;
+      border: none;
+    }
+    .btn-outline-danger{
+      background-color:white;
+      color:#8E1916;
+      font-weight: bold;
+      border: none;
+    }
+    `}
+      </style>
+      <Container id="body">
+        <Row id="container">
+          <Col className="login">
+            <Form className="content">
+              <Form.Group>
+                <Form.Text>
+                  <h1>Log In</h1>
+                </Form.Text>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group>
-          {/* <Button variant="primary" type="submit">
-        Submit
-      </Button> */}
-        </Form>
-        <a href="home" className="m-auto">
-          <Button>Login</Button>
-        </a>
+                <Form.Group id="fInput">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Email" />
+                </Form.Group>
 
-        <a href="Register" className="m-3 text-decoration-none">
-          Don't have an account yet?
-        </a>
+                <Form.Group id="fInput">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" />
+                </Form.Group>
+              </Form.Group>
+              <a href="home">
+                <Button variant="danger" className="btnLogin">
+                  Login
+                </Button>
+              </a>
+            </Form>
+
+            <a href="/" className="aLink">
+              Back
+            </a>
+          </Col>
+          <Col className="page front">
+            <Form className="content">
+              <Form.Group>
+                <img src={Logo} alt="Es Club" style={{ width: "10rem" }} />
+                <h3>Welcome to Es Club</h3>
+                <p>
+                  Are you still not a member of ES CLUB where you can access all
+                  clubs and events at Eskisehir Technical University?
+                </p>
+                <a href="Register">
+                  <Button className="btnRegister" variant="outline-danger">
+                    Register
+                  </Button>
+                </a>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
       </Container>
-    </Card>
+    </>
   );
 }
 
