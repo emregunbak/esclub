@@ -4,8 +4,8 @@ import Clubs from "./Components/Clubs";
 import Events from "./Components/Events";
 import Home from "./Components/Home";
 import LandingPage from "./Components/LandingPage";
-import Login from "./Components/Login";
-import Register from "./Components/Register";
+import Login from "./Components/welcome-page/Login";
+import Register from "./Components/welcome-page/Register";
 
 function App() {
   return (
