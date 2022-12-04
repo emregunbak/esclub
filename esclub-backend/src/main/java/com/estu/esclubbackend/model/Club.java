@@ -1,5 +1,6 @@
 package com.estu.esclubbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,23 +20,31 @@ public class Club extends BaseEntity {
     @Column(unique = true)
     private String shortName;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Event> events;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Announcement> announcements;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "club")
     private List<Sponsor> sponsors;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<User> members;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private List<User> team;
 
     @OneToOne
     private Image logo;
+
+    @OneToOne
+    private ClubInfo clubInfo;
 }

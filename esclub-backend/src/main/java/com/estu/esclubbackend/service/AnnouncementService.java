@@ -14,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +24,8 @@ import java.util.List;
 public class AnnouncementService {
     private final AnnouncementRepository announcementRepository;
     private final ClubRepository clubRepository; //Club servis kullanılacak
+    private final ClubService clubService;
+    private final ImageService imageService;
 
     public List<AnnouncementDto> getAllAnnouncements() {
         return announcementRepository.findAll().stream()
@@ -29,10 +34,7 @@ public class AnnouncementService {
     }
 
     public AnnouncementDto getAnnouncementByClubId(Long clubId){
-        return AnnouncementDtoConverter.convertToAnnouncementDto(
-                announcementRepository.findAnnouncementByClubId(clubId).orElseThrow(() ->
-                            GenericException.builder().errorCode(ErrorCode.ANNOUNCEMENT_NOT_FOUND).build()
-                        ));
+        return AnnouncementDtoConverter.convertToAnnouncementDto(announcementRepository.findAnnouncementByClubId(clubId));
     }
 
     public AnnouncementDto getAnnouncementById(Long id) {
@@ -42,36 +44,60 @@ public class AnnouncementService {
                         .httpStatus(HttpStatus.NOT_FOUND).build()));
     }
 
-//    public AnnouncementDto createAnnouncement(AnnouncementRequest request) {
-//        if (request.getImages() != null) {
-//            var images = request.getImages().stream().map(file ->
-//                    Image.builder().image(MultipartFileConverter.convert(file)).build()).toList();
-//
-//            var announcement = announcementRepository.save(Announcement.builder()
-//                    .club(clubRepository.findById(request.getClubId()).get())
-//                    .title(request.getTitle())
-//                    .body(request.getBody())
-//                    .images(images).build());
-//            return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
-//        }
-//        var announcement = announcementRepository.save(Announcement.builder()
-//                .club(clubRepository.findById(request.getClubId()).get())
-//                .title(request.getTitle())
-//                .body(request.getBody()).build());
-//
-//        return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
-//    }
+    public AnnouncementDto createAnnouncement(AnnouncementRequest request) {
+        if (request.getImages().stream().findFirst().get().getSize() > 0) {
+            var images = request.getImages().stream().map(image ->
+            {
+                try {
+                    return imageService.uploadImage(image);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }).toList();
+
+            var announcement = announcementRepository.save(Announcement.builder()
+                    .club(clubService.getClubById(request.getClubId()))
+                    .title(request.getTitle())
+                    .body(request.getBody())
+                    .images(images).build());
+            return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
+        }
+        var announcement = announcementRepository.save(Announcement.builder()
+                .club(clubService.getClubById(request.getClubId()))
+                .title(request.getTitle())
+                .body(request.getBody()).build());
+
+        return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
+    }
 
     public String deleteAnnouncement(Long id){
         announcementRepository.deleteById(id);
         return String.format("Deleted announcement id: %s", id);
     }
 
-//    public AnnouncementDto updateAnnouncement(Long id, AnnouncementRequest request) {
-//        var announcement = announcementRepository.findById(id);
-//
-//        if (announcement.isPresent()){
-//
-//        }
-//    }
+    public AnnouncementDto updateAnnouncement(Long id, AnnouncementRequest request) {
+        var announcement = announcementRepository.findById(id).orElseThrow(()->
+                GenericException.builder()
+                        .errorCode(ErrorCode.ANNOUNCEMENT_NOT_FOUND)
+                        .errorMessage("Announcement not found")
+                        .httpStatus(HttpStatus.NOT_FOUND).build());
+        announcement.setBody(request.getBody());
+        announcement.setTitle(request.getTitle());
+        announcement.setClub(clubService.getClubById(request.getClubId()));
+        announcement.setUpdateDate(LocalDateTime.now());
+        if (request.getImages() != null){
+            announcement.setImages(request.getImages().stream().map(image ->
+            {
+                try {
+                    return imageService.uploadImage(image);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }).toList());
+        }else{
+            announcement.setImages(new ArrayList<>());
+        }
+
+        return AnnouncementDtoConverter.convertToAnnouncementDto(announcementRepository.save(announcement));
+    }
 }

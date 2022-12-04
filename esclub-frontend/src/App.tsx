@@ -6,6 +6,7 @@ import Home from "./Components/Home";
 import LandingPage from "./Components/LandingPage";
 import Login from "./Components/welcome-page/Login";
 import Register from "./Components/welcome-page/Register";
+import UpdateClubFrom from "./Components/forms/UpdateClubFrom";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="events" element={<Events />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="update-club-form" element={<UpdateClubFrom />} />
         </Routes>
       </div>
     </>

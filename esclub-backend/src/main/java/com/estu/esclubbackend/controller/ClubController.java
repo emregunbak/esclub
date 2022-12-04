@@ -1,14 +1,14 @@
 package com.estu.esclubbackend.controller;
 
+import com.estu.esclubbackend.dto.ClubDetailsDto;
 import com.estu.esclubbackend.dto.ClubDto;
 import com.estu.esclubbackend.dto.ClubCreateResponse;
-import com.estu.esclubbackend.dto.converter.ImageDtoConverter;
-import com.estu.esclubbackend.model.Image;
+import com.estu.esclubbackend.dto.converter.ClubDtoConverter;
+import com.estu.esclubbackend.model.ClubInfo;
 import com.estu.esclubbackend.service.ClubService;
 import com.estu.esclubbackend.service.ImageService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,39 +28,57 @@ public class ClubController {
         return ResponseEntity.ok(clubService.getAllClubs());
     }
 
-//    @GetMapping("/details")
-//    public ResponseEntity<?> getAllClubDetails(){
-//        return ResponseEntity.ok(clubService.getAllClubDetails());
-//    }
+    @GetMapping("/club/{clubId}")
+    public ResponseEntity<ClubDetailsDto> getClubById(@PathVariable Long clubId){
+        ClubDetailsDto clubDetailsDto = ClubDtoConverter.converToClubDetailsDto(clubService.getClubById(clubId));
+        return ResponseEntity.ok(clubDetailsDto);
+    }
+
+    @GetMapping("/club")
+    public ResponseEntity<ClubDetailsDto> getClubByShortName(@RequestParam String shortName){
+        return ResponseEntity.ok(clubService.getClubByShortName(shortName));
+    }
+
+    @GetMapping("/details")
+    public ResponseEntity<List<ClubDetailsDto>> getAllClubDetails(){
+        return ResponseEntity.ok(clubService.getAllClubDetails());
+    }
+
+    @GetMapping("/details/{clubId}")
+    public ResponseEntity<ClubDetailsDto> getAllClubDetailsById(@PathVariable Long clubId){
+        return ResponseEntity.ok(clubService.getAllClubDetailsById(clubId));
+    }
 
     @PostMapping("/create")
     public ResponseEntity<ClubCreateResponse> createClub(
             @RequestParam String clubName,
             @RequestParam String shortName,
             @RequestParam MultipartFile logo) throws Exception {
-        var clubLogo = imageService.uploadImage(logo, shortName);
+        var clubLogo = imageService.uploadImage(logo, shortName.toUpperCase());
         ClubDto club = ClubDto.builder().clubName(clubName).shortName(shortName).logo(clubLogo).build();
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(clubService.createClub(club));
     }
 
-    @PostMapping("/upload-file")
-    public ResponseEntity<Image> uploadImage(@RequestParam("file")MultipartFile file) throws IOException {
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(imageService.uploadImage(file));
-    }
-
-    @GetMapping("/download-file")
-    public ResponseEntity<?> downloadImage(@RequestParam Long imageId){
-        var imageData = imageService.downloadImage(imageId);
-        return ResponseEntity.status(HttpStatus.OK)
-                .contentType(MediaType.IMAGE_PNG)
-                .body(imageData);
+    @PutMapping("/update/{clubId}")
+    public ResponseEntity<ClubCreateResponse> updateClub(
+            @PathVariable Long clubId,
+            @RequestParam String clubName,
+            @RequestParam String shortName,
+            @RequestParam MultipartFile logo) throws IOException {
+        return ResponseEntity.ok(clubService.updateClub(clubId, clubName, shortName, logo));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteClub(@PathVariable Long id){
         return ResponseEntity.ok(clubService.deleteClub(id));
+    }
+
+    @PutMapping("/create-club-info/{clubId}")
+    public ResponseEntity<ClubDetailsDto> createClubInfo(
+            @PathVariable Long clubId, @ModelAttribute ClubInfo clubInfo
+    ){
+        return ResponseEntity.ok(clubService.createClubInfo(clubId, clubInfo));
     }
 }
