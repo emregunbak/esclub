@@ -52,7 +52,7 @@ function Home() {
             <Card.Header style={{ background: "#A62732", color: "white" }}>
               All Clubs
               <input
-              style={{marginRight:"4px"}}
+                style={{ marginRight: "4px" }}
                 placeholder="Search..."
                 onChange={(e) => searchItems(e.target.value)}
               />
@@ -73,8 +73,13 @@ function Home() {
                     return (
                       <a
                         href=""
-                        style={{ color: "black", textDecoration: "none",marginLeft:"10px" }}
-                      ><FaCircle size={5} />
+                        style={{
+                          color: "black",
+                          textDecoration: "none",
+                          marginLeft: "10px",
+                        }}
+                      >
+                        <FaCircle size={5} />
                         {item.name}
                       </a>
                     );
@@ -94,7 +99,7 @@ function Home() {
                 className="announce-pp"
               ></Image>{" "}
               EESTEC
-            </Card.Header >
+            </Card.Header>
             <Card.Body>
               <Card.Title>
                 {" "}
@@ -113,27 +118,23 @@ function Home() {
           </Card>
           {allAnnounces.map((item: any) => {
             return (
-
               <Card
-              className="deneme"
+                className="deneme"
                 border="dark"
                 style={{ width: "100%", marginBottom: "10px" }}
-               
               >
-                <Card.Header style={{backgroundColor:"#F0F0F0"}}>{item.fullName}</Card.Header>
+                <Card.Header style={{ backgroundColor: "#F0F0F0" }}>
+                  {item.fullName}
+                </Card.Header>
                 <Card.Body>
                   <Card.Title>
                     {" "}
-                    <Image
-                      src={item.src}
-                      className="announce-pp"
-                    ></Image>
+                    <Image src={item.src} className="announce-pp"></Image>
                     {item.name}
                   </Card.Title>
                   <Card.Text>{item.announce}</Card.Text>
                 </Card.Body>
               </Card>
-
             );
           })}
         </Col>
