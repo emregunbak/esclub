@@ -9,8 +9,8 @@ function LandingPage() {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="me-auto">
-            <Nav.Link href="login">Login</Nav.Link>
-            <Nav.Link href="register">Register</Nav.Link>
+            <Nav.Link href="Login">Login</Nav.Link>
+            <Nav.Link href="Register">Register</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

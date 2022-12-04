@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+#containerUser {
+  background-image: url("../Components/img/register.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#bckRegister {
+  background-color: rgba(248, 250, 252, 255);
+}
+
+#clubRegister {
+  background-color: rgba(248, 250, 252, 255);
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+#body {
+  font-family: Montserrat, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  perspective: 1500px;
+}
+#container {
+  margin-top: 40px;
+  width: 95%;
+  max-width: 800px;
+  position: static;
+  border-radius: 20px;
+  box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.1),
+    0 10px 10px -10px rgba(0, 0, 0, 0.02);
+}
+.login {
+  left: 0;
+  background: #fafafa;
+  border-radius: 20px 0 0 20px;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2.5em;
+  text-align: center;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
+
+#fInput {
+  background: #eee;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+  font-size: 1em;
+  text-align: left;
+}
+.content {
+  width: 100%;
+  padding: 2em 4em;
+  text-align: center;
+}
+.page {
+  right: 0;
+  color: #fff;
+  border-radius: 0 20px 20px 0;
+}
+.front {
+  background: linear-gradient(-0deg, #a01919 0%, #5e0303 100%) no-repeat 0 0 /
+    200%;
+  z-index: 3;
+}
+
+p {
+  font-size: small;
+}
+a:link {
+  text-decoration: none;
+}
+.aLink {
+  color: rgb(92, 91, 91);
+  padding-left: 10px;
+}
+.aLink:hover {
+  color: #5e0303;
+}
+.btnLogin {
+  margin: 1em auto;
+  letter-spacing: 1.2px;
+  padding: 0.4em 1.5em;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border-radius: 15px;
+  box-shadow: 0 3px rgb(207, 204, 204);
+}
+.btnLogin:hover {
+  background-color: #810404;
+}
+.btnLogin:active {
+  background-color: #eee;
+  box-shadow: 0 0px #810404;
+  transform: translateY(0.8px);
+}
+.btnRegister {
+  margin: 0.3em auto;
+  letter-spacing: 0.2px;
+  padding: 0.4em 1em;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border-radius: 15px;
+  box-shadow: 0 3px rgb(207, 204, 204);
+}
+.btnRegister:hover {
+  background-color: #810404;
+}
+.btnRegister:active {
+  background-color: #810404;
+  box-shadow: 0 0px #8e1916;
+  transform: translateY(0.8px);
+}
