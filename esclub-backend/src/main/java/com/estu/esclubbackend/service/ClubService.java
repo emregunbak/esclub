@@ -5,6 +5,7 @@ import com.estu.esclubbackend.dto.ClubDto;
 import com.estu.esclubbackend.dto.ClubCreateResponse;
 import com.estu.esclubbackend.dto.converter.ClubDtoConverter;
 import com.estu.esclubbackend.dto.converter.ImageDtoConverter;
+import com.estu.esclubbackend.dto.converter.UserDtoConverter;
 import com.estu.esclubbackend.enums.ErrorCode;
 import com.estu.esclubbackend.exception.GenericException;
 import com.estu.esclubbackend.model.Club;
@@ -40,8 +41,6 @@ public class ClubService {
                     .events(club.getEvents())
                     .announcements(club.getAnnouncements())
                     .sponsors(club.getSponsors())
-                    .members(club.getMembers())
-                    .team(club.getTeam())
                     .logo(club.getLogo()).build());
 
             return ClubCreateResponse.builder()

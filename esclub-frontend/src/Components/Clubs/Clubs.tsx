@@ -19,23 +19,24 @@ function Clubs() {
   };
   const [clubs, setClubs] = useState<any[]>([]);
   useEffect(() => {
-    axios.get("").then((response: any) => {
+    axios.get('http://localhost:8080/api/v1/clubs', ).then((response)=>{
       setClubs(response.data);
-    });
-  });
+    })
+
+    },[]);
   let navigate = useNavigate();
   const routeChange = (deneme: string) => {
     let path = deneme;
     navigate(path);
   };
-
+console.log("deneme",clubs)
   return (
     <>
       <EsclubNavbar />
       <Row>
         <div>
           <div style={{ marginTop: "150px", marginLeft: "100px" }}>
-            <h1
+            <h2
               style={{
                 color: "#A62732",
                 fontFamily: "sans-serif",
@@ -43,8 +44,8 @@ function Clubs() {
               }}
             >
               Kulüpler Hakkında Her Şey
-            </h1>
-            <h5 style={{ fontFamily: "cursive" }}> Tek Sayfada Seninle</h5>
+            </h2>
+            <h5 style={{ fontFamily: "sans-serif" }}> Tek Sayfada Seninle</h5>
           </div>
         </div>
         <Lottie
@@ -55,29 +56,34 @@ function Clubs() {
         />
       </Row>
       <Row>
-        {allClubs.map((item: any) => {
+        {clubs.map((item: any) => {
           return (
-            <Col sm="4">
+            <Col sm="3">
               <Card
                 style={{
-                  width: "25rem",
+                  width: "17rem",
                   marginLeft: "60px",
                   marginBottom: "10px",
                   borderRadius: "5px",
+                  height:"480px",
+                  marginTop:"10px"
                 }}
               >
                 <Card.Img
+                    style={{height:"250px"}}
                   variant="top"
-                  src="https://ogrencikariyeri.com//AdminFiles/CMS/Content/wp-content/uploads/2018/01/Ba%C5%9Fl%C4%B1ks%C4%B1z-1.png"
+                  src={item.logo.imageURL
+                }
                 />
                 <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
+                  <Card.Title>{item.clubName}</Card.Title>
                   <Card.Text>
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
                   </Card.Text>
-                  <Button variant="primary" onClick={() => routeChange("beng")}>See More</Button>
+
                 </Card.Body>
+                <Button style={{background:"darkred"}} onClick={() => routeChange(item.clubName)}>See More</Button>
               </Card>
             </Col>
           );

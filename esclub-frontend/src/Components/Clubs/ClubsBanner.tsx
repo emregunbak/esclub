@@ -15,7 +15,7 @@ function ClubsBanner() {
     <>
     <div>
     <div style={{ marginTop: "150px", marginLeft: "100px" }}>
-      <h1
+      <h2
         style={{
           color: "#A62732",
           fontFamily: "sans-serif",
@@ -23,7 +23,7 @@ function ClubsBanner() {
         }}
       >
         Kulübünün Sana Haberi Var
-      </h1>
+      </h2>
       <h5 style={{ fontFamily: "sans-serif" }}>
         {" "}
         En güncel haberleri kaçırma

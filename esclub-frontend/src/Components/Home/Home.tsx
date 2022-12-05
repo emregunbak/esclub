@@ -10,7 +10,7 @@ import axios from "axios";
 import Banner from "./Banner";
 import { announces } from "../../constant/announceData";
 import { allClubs } from "../../constant/clubsData";
-function Home() {
+function Home(props:any) {
   const [filteredResults, setFilteredResults] = useState([] as any);
   const [searchInput, setSearchInput] = useState("");
   
@@ -29,8 +29,8 @@ function Home() {
       setFilteredResults(clubs);
     }
   };
-  const [allAnnounces, setAllAnnounces] = useState<any[]>(announces);
-  const [clubs, setClubs] = useState<any[]>(allClubs);
+  const [allAnnounces, setAllAnnounces] = useState<any[]>([]);
+  const [clubs, setClubs] = useState<any[]>([]);
   const handleAddAnnounce = (e: any) => {
     if (e.key === "Enter") {
       const announce = [] as any;
@@ -44,14 +44,24 @@ function Home() {
       e.target.value = "";
     }
   };
+
   useEffect(() => {
-    axios.get("").then((response: any) => {
-      setAllAnnounces(response.data);
-    });
-    axios.get("").then((response: any) => {
-      setClubs(response.data);
-    });
-  });
+    axios.get('http://localhost:8080/api/v1/clubs', )
+        .then((res) => {
+          setClubs(res.data)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    axios.get('http://localhost:8080/api/v1/announcements',
+    )
+        .then((res) => {
+          setAllAnnounces(res.data)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+  },[]);
   return (
     <>
       <EsclubNavbar />
@@ -65,7 +75,7 @@ function Home() {
             </Card.Header>
             <ListGroup
               variant="flush"
-              style={{ height: "500px", overflow: "auto" }}
+              style={{ height: "400px", overflow: "auto" }}
             >
               <ListGroup.Item>
                 {" "}
@@ -88,7 +98,7 @@ function Home() {
                             style={{ textDecoration: "none", color: "black" }}
                             href="#"
                           >
-                            <b>{item.name}</b>
+                            <b>{item.clubName}</b>
                           </a>
                         </ListGroup.Item>
                       </ListGroup>
@@ -102,7 +112,7 @@ function Home() {
                             style={{ textDecoration: "none", color: "black" }}
                           >
                             <li>
-                              <b>{item.name}</b>
+                              <b>{item.clubName}</b>
                             </li>
                           </a>
                         </ListGroup.Item>
@@ -149,15 +159,16 @@ function Home() {
                 style={{ marginBottom: "10px", marginInline: "20px" }}
               >
                 <Card.Header style={{ backgroundColor: "#F0F0F0" }}>
-                  {item.fullName}
+                  <Image src={item.club.logo.imageURL} className="announce-pp"></Image>
+                  {item.club.shortName+" - "+ item.club.clubName}
                 </Card.Header>
                 <Card.Body>
                   <Card.Title>
                     {" "}
-                    <Image src={item.src} className="announce-pp"></Image>
+
                     {item.name}
                   </Card.Title>
-                  <Card.Text>{item.announce}</Card.Text>
+                  <Card.Text style={{fontSize:"16px"}}>{item.body}</Card.Text>
                 </Card.Body>
               </Card>
             );

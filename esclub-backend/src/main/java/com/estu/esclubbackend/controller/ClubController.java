@@ -1,12 +1,17 @@
 package com.estu.esclubbackend.controller;
 
-import com.estu.esclubbackend.dto.ClubDetailsDto;
-import com.estu.esclubbackend.dto.ClubDto;
-import com.estu.esclubbackend.dto.ClubCreateResponse;
+import com.estu.esclubbackend.dto.*;
 import com.estu.esclubbackend.dto.converter.ClubDtoConverter;
+import com.estu.esclubbackend.dto.converter.ImageDtoConverter;
+import com.estu.esclubbackend.dto.request.ClubAdminCreateRequest;
+import com.estu.esclubbackend.dto.request.LoginRequest;
+import com.estu.esclubbackend.enums.Role;
 import com.estu.esclubbackend.model.ClubInfo;
+import com.estu.esclubbackend.model.User;
+import com.estu.esclubbackend.service.AuthService;
 import com.estu.esclubbackend.service.ClubService;
 import com.estu.esclubbackend.service.ImageService;
+import com.estu.esclubbackend.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +27,8 @@ import java.util.List;
 public class ClubController {
     private final ClubService clubService;
     private final ImageService imageService;
+    private final UserService userService;
+    private final AuthService authService;
 
     @GetMapping
     public ResponseEntity<List<ClubDto>> getAllClubs(){

@@ -32,18 +32,23 @@ public class Club extends BaseEntity {
     @ManyToMany(mappedBy = "club")
     private List<Sponsor> sponsors;
 
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private List<User> members;
-
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private List<User> team;
-
     @OneToOne
     private Image logo;
+
+//    @OneToOne
+//    private User admin;
+
+//    @JsonIgnore
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private List<User> members;
+
+//    @JsonIgnore
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private List<User> team;
+
+
 
     @OneToOne
     private ClubInfo clubInfo;

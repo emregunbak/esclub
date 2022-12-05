@@ -18,16 +18,17 @@ public class ClubDto {
     private String clubName;
     private String shortName;
     private Image logo;
-    //These fields will be updated
+//    private User admin;
+
     @JsonIgnore
     private List<Event> events;
     @JsonIgnore
     private List<Announcement> announcements;
     @JsonIgnore
     private List<Sponsor> sponsors;
-    @JsonIgnore
-    private List<User> members;
-    @JsonIgnore
-    private List<User> team;
+//    @JsonIgnore
+//    private List<User> members;
+//    @JsonIgnore
+//    private List<User> team;
 
 }

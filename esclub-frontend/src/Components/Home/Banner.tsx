@@ -15,15 +15,15 @@ function Banner() {
     <>
     <div>
     <div style={{ marginTop: "150px", marginLeft: "100px" }}>
-      <h1
+      <h2
         style={{
           color: "#A62732",
           fontFamily: "sans-serif",
           fontWeight: "900",
+          fontSize:"100x"
         }}
-      >
-        Kulübünün Sana Haberi Var
-      </h1>
+      >Kulübünün Sana Haberi Var
+      </h2>
       <h5 style={{ fontFamily: "sans-serif" }}>
         {" "}
         En güncel haberleri kaçırma

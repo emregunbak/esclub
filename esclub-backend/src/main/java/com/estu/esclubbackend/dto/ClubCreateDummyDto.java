@@ -5,14 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This dto will be refactored
+ */
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class ClubCreateResponse {
+@AllArgsConstructor
+public class ClubCreateDummyDto {
     private Long id;
     private String clubName;
     private String shortName;
     private ImageDto logo;
-//    private UserDto admin;
+//    private TokenResponseDto admin;
 }

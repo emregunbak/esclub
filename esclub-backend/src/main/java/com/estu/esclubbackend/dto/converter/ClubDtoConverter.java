@@ -15,8 +15,7 @@ public class ClubDtoConverter {
                 .events(club.getEvents())
                 .announcements(club.getAnnouncements())
                 .sponsors(club.getSponsors())
-                .members(club.getMembers())
-                .team(club.getTeam())
+//                .admin(club.getAdmin())
                 .logo(club.getLogo()).build();
     }
 
@@ -28,8 +27,7 @@ public class ClubDtoConverter {
                 .logo(ImageDtoConverter.convertToImageDto(club.getLogo()))
                 .announcements(club.getAnnouncements().stream().map(AnnouncementDtoConverter::convertToAnnouncementDto).toList())
                 .events(club.getEvents())
-                .members(club.getMembers())
-                .team(club.getTeam())
+//                .admin(UserDtoConverter.convertToUserDto(club.getAdmin()))
                 .sponsors(club.getSponsors())
                 .clubInfo(club.getClubInfo()).build();
     }
@@ -39,6 +37,7 @@ public class ClubDtoConverter {
                 .id(club.getId())
                 .shortName(club.getShortName())
                 .clubName(club.getClubName())
+//                .admin(UserDtoConverter.convertToUserDto(club.getAdmin()))
                 .logo(ImageDtoConverter.convertToImageDto(club.getLogo())).build();
     }
 }

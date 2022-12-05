@@ -19,6 +19,7 @@ public class ClubDetailsDto {
     private String shortName;
     private ImageDto logo;
     private ClubInfo clubInfo;
+//    private UserDto admin;
 
     private List<Event> events;
     private List<AnnouncementDto> announcements;

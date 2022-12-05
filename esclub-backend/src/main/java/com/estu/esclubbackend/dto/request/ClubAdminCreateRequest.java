@@ -1,18 +1,20 @@
-package com.estu.esclubbackend.dto;
+package com.estu.esclubbackend.dto.request;
 
-import com.estu.esclubbackend.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-    private Long id;
+@Builder
+public class ClubAdminCreateRequest {
+    @NotBlank
     private String username;
+    @NotBlank
+    private String password;
     private String email;
-    private Role role;
 }

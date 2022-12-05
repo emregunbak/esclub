@@ -3,8 +3,35 @@ import Form from "react-bootstrap/Form";
 import { Container, Row, Col } from "react-bootstrap";
 import Logo from "../img/logo.png";
 import "../../style/welcome-page.css";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import Home from "../Home/Home";
 
 function Login() {
+  const[userName,setUserName]=useState<any>();
+  const[password,setPassword]=useState<any>();
+  const [token,setToken]=useState<any>()
+  const navigate = useNavigate();
+  const handleLogin=async ()=>{
+    await axios.post("http://localhost:8080/api/v1/auth/login", { username: userName,
+      password: password}, {
+      auth: {
+        username: userName,
+        password: password
+      }
+    }).then(function(response) {
+
+      setToken(response.data.accessToken
+      )
+      navigate("/home")
+
+    }).catch(function(error) {
+      alert('Error on Authentication');
+    });
+
+  }
+
   return (
     <>
       <style type="text/css">
@@ -33,20 +60,20 @@ function Login() {
                 </Form.Text>
 
                 <Form.Group id="fInput">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Email" />
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type="text" placeholder="Enter Username" onChange={(e)=>setUserName(e.target.value)}/>
                 </Form.Group>
 
                 <Form.Group id="fInput">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
                 </Form.Group>
               </Form.Group>
-              <a href="home">
-                <Button variant="danger" className="btnLogin">
+
+                <Button variant="danger" className="btnLogin" onClick={()=>handleLogin()}>
                   Login
                 </Button>
-              </a>
+
             </Form>
 
             <a href="/" className="aLink">
