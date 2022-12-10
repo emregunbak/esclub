@@ -34,12 +34,16 @@ function Login() {
 
                 <Form.Group id="fInput">
                   <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Email" />
+                  <Form.Control type="email" placeholder="Email" required />
                 </Form.Group>
 
                 <Form.Group id="fInput">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    required
+                  />
                 </Form.Group>
               </Form.Group>
               <a href="home">
