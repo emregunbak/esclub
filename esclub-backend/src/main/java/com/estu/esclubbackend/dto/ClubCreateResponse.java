@@ -14,4 +14,5 @@ public class ClubCreateResponse {
     private String clubName;
     private String shortName;
     private ImageDto logo;
+//    private UserDto admin;
 }

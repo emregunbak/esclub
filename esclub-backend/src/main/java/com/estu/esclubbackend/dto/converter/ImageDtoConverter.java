@@ -8,6 +8,7 @@ public class ImageDtoConverter {
         return ImageDto.builder()
                 .id(image.getId())
                 .name(image.getName())
-                .type(image.getType()).build();
+                .type(image.getType())
+                .imageURL(image.getImageURL()).build();
     }
 }

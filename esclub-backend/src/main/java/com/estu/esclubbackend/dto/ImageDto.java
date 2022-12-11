@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Size;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -14,4 +16,5 @@ public class ImageDto {
     private Long id;
     private String name;
     private String type;
+    private String imageURL;
 }

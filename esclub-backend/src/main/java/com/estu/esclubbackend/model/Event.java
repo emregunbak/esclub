@@ -1,6 +1,7 @@
 package com.estu.esclubbackend.model;
 
 import com.estu.esclubbackend.enums.EventStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;

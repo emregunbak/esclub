@@ -5,16 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
+/**
+ * This dto will be refactored
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnnouncementDto {
+public class ClubCreateDummyDto {
     private Long id;
-    private ClubCreateResponse club;
-    private String title;
-    private String body;
-    private List<ImageDto> images;
+    private String clubName;
+    private String shortName;
+    private ImageDto logo;
+//    private TokenResponseDto admin;
 }

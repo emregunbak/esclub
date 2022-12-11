@@ -4,6 +4,8 @@ import EsclubNavbar from "../EsclubNavbar";
 import Lottie from "react-lottie";
 import club from "../../LottieFiles/club.json";
 import ClubBanner from "./ClubBanner";
+import {useEffect, useState} from "react";
+import axios from "axios";
 function Club(props: any) {
   const { clubName } = useParams();
   const defaultOptions = {
@@ -14,6 +16,16 @@ function Club(props: any) {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+  const [oneClub,setOneClub]=useState()
+  useEffect(() => {
+    axios.get('http://localhost:8080/api/v1/clubs', ).then((response)=>{
+      setOneClub(response.data.filter((item: any)=> item.clubName===clubName)[0].logo.imageURL);
+
+    })
+
+
+  },[]);
+
   return (
     <>
       <EsclubNavbar />
@@ -22,16 +34,18 @@ function Club(props: any) {
       </Row>
       <Row style={{ margin: "10px" }}>
         <Col sm="4">
-          <Image
-            style={{ width: "100%", borderRadius: "5px" }}
-            src="https://ogrencikariyeri.com//AdminFiles/CMS/Content/wp-content/uploads/2018/01/Ba%C5%9Fl%C4%B1ks%C4%B1z-1.png"
-          ></Image>
+          <Card.Img
+              style={{height:"250px",width:"300px",marginLeft:"100px"}}
+              variant="top"
+              src={oneClub
+              }
+          />
         </Col>
         <Col sm="8">
-          <h1>
+          <h2>
             {" "}
             <b> {clubName}</b>
-          </h1>
+          </h2>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo,
             ex. Lorem ipsum dolor sit amet consectetur adipisicing elit.

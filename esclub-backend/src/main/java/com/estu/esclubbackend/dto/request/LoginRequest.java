@@ -1,6 +1,5 @@
-package com.estu.esclubbackend.dto;
+package com.estu.esclubbackend.dto.request;
 
-import com.estu.esclubbackend.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-    private Long id;
+public class LoginRequest {
     private String username;
-    private String email;
-    private Role role;
+    private String password;
 }

@@ -14,14 +14,13 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User extends BaseEntity {
 
-    @Column
-    private String name;
+    @Column(unique = true)
+    private String username;
 
-    @Column
-    private String surname;
-
-    @Column
+    @Column(unique = true)
     private String email;
+
+    private String password;
 
     @Enumerated(EnumType.STRING)
     private Role role;

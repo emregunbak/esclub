@@ -381,3 +381,4 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 esclub-backend/src/main/resources/data/esclub.lock.db
+*.db
