@@ -1,19 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
-
-#containerUser {
-  background-image: url("../Components/img/register.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-#bckRegister {
-  background-color: rgba(248, 250, 252, 255);
-}
-
-#clubRegister {
-  background-color: rgba(248, 250, 252, 255);
-}
-
 *,
 *::after,
 *::before {
@@ -37,10 +22,16 @@
   margin-top: 40px;
   width: 95%;
   max-width: 800px;
-  position: static;
+  position: relative;
   border-radius: 20px;
   box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.1),
     0 10px 10px -10px rgba(0, 0, 0, 0.02);
+}
+.registerClass {
+  right: 0;
+  z-index: 1;
+  border-radius: 0 20px 20px 0;
+  background: #fafafa;
 }
 .login {
   left: 0;
@@ -77,11 +68,15 @@ h1 {
   border-radius: 0 20px 20px 0;
 }
 .front {
-  background: linear-gradient(-0deg, #a01919 0%, #5e0303 100%) no-repeat 0 0 /
+  background: linear-gradient(-55deg, #a01919 0%, #5e0303 100%) no-repeat 0 0 /
     200%;
   z-index: 3;
 }
-
+.back {
+  background: linear-gradient(135deg, #a01919 0%, #5e0303 100%) no-repeat 0 0 /
+    200%;
+  z-index: 2;
+}
 p {
   font-size: small;
 }
@@ -89,8 +84,8 @@ a:link {
   text-decoration: none;
 }
 .aLink {
-  color: rgb(92, 91, 91);
-  padding-left: 10px;
+  color: rgba(124, 122, 122, 0.788);
+  font-weight: bold;
 }
 .aLink:hover {
   color: #5e0303;
