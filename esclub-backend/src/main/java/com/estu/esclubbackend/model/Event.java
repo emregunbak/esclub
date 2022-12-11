@@ -1,24 +1,31 @@
 package com.estu.esclubbackend.model;
 
+import com.estu.esclubbackend.enums.EventStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@Table(name = "event")
 public class Event extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "club_id")
     private Club club;
     private String eventName;
-    private LocalDateTime StartDate;
-    private LocalDateTime EndDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private String description;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
+    @Enumerated(EnumType.STRING)
+    private EventStatus eventStatus;
 }

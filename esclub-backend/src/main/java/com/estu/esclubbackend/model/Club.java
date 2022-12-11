@@ -1,29 +1,55 @@
 package com.estu.esclubbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Club extends BaseEntity{
+@Table(name = "club")
+public class Club extends BaseEntity {
 
+    @Column(unique = true)
     private String clubName;
-    @OneToMany
+    @Column(unique = true)
+    private String shortName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Event> events;
-    @OneToMany(mappedBy = "club")
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Announcement> announcements;
-    @ManyToMany(mappedBy = "clubs")
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "club")
     private List<Sponsor> sponsors;
-//    @OneToMany
-//    private List<Student> members;
-//    @OneToMany
-//    private List<ClubAdmin> team;
+
+    @OneToOne
+    private Image logo;
+
+//    @OneToOne
+//    private User admin;
+
+//    @JsonIgnore
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private List<User> members;
+
+//    @JsonIgnore
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//    private List<User> team;
+
+
+
+    @OneToOne
+    private ClubInfo clubInfo;
 }

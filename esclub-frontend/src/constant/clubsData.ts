@@ -1,56 +1,74 @@
 export const allClubs = [
   {
-    name: "EESTEC",
+    name: "Ateş Böceği Kulübü",
   },
   {
-    name: "EVK",
+    name: "Avrupa Elektrik Mühendisliği Öğrencileri Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Çevre ve Sürdürülebilirlik Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Dans Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Endüstri ve Verimlilik Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Erasmus Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "ESTÜ Espor Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Fotoğrafçılık Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "IAESTE Öğrenci Komitesi Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "IEEE Eskişehir Teknik Üniversitesi Öğrenci Kolu Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Kariyer ve Girişimcilik Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Kimya ve Teknolojileri Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "DetaylarMotorsporları Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Radyo Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Rekreasyon ve Etkinlik Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Sanat Aktiviteleri Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Satranç ve Zeka Oyunları Kulübü",
   },
   {
-    name: "EESTEC",
+    name: "Savunma Sanayii ve Teknolojileri Kulübü",
+  },
+  {
+    name: "Sivil Havacılık Kulübü",
+  },
+  {
+    name: "Spor ve Yaşam Kulübü",
+  },
+  {
+    name: "Tasarım Kulübü",
+  },
+  {
+    name: "Veri Bilimi Kulübü",
+  },
+  {
+    name: "Ortak Alan Mekan Tasarımı ve Planlama Kulübü",
+  },
+  {
+    name: "Yapı Kulübü",
   },
 ];
