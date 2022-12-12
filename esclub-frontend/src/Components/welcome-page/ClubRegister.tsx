@@ -34,9 +34,11 @@ function ClubRegister() {
             />
           </Form.Group>
           <span className="clearfix"></span>
-          <Button className="btnRegister" variant="danger">
-            Club Register
-          </Button>
+          <a href="login">
+            <Button className="btnRegister" variant="danger">
+              Club Register
+            </Button>
+          </a>
         </Form.Group>
       </Form>
     </>

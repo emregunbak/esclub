@@ -65,7 +65,12 @@ h1 {
 .page {
   right: 0;
   color: #fff;
-  border-radius: 0 20px 20px 0;
+  border-radius: 0px 20px 20px 0px;
+}
+.page2 {
+  right: 0;
+  color: #fff;
+  border-radius: 20px 0px 0px 20px;
 }
 .front {
   background: linear-gradient(-55deg, #a01919 0%, #5e0303 100%) no-repeat 0 0 /
@@ -125,4 +130,23 @@ a:link {
   background-color: #810404;
   box-shadow: 0 0px #8e1916;
   transform: translateY(0.8px);
+}
+.landing-page {
+  background-color: rgba(238, 238, 238, 255);
+}
+.esc-gif {
+  max-width: 100%;
+  height: auto;
+}
+.logo-s {
+  width: 7%;
+  margin-left: 10%;
+}
+.navbar-style {
+  background-color: gray;
+  font-weight: bold;
+}
+.navbar-hover {
+  background-color: #707072;
+  border-radius: 10px 10px 0 0;
 }

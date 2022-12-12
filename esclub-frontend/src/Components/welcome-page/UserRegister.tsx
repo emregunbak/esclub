@@ -56,7 +56,7 @@ function UserRegister() {
             />
           </Form.Group>
         </Form.Group>
-        <a href="home">
+        <a href="login">
           <Button variant="danger" className="btnLogin" id="register">
             User Register
           </Button>
