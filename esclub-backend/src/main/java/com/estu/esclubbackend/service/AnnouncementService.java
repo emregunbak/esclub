@@ -45,23 +45,23 @@ public class AnnouncementService {
     }
 
     public AnnouncementDto createAnnouncement(AnnouncementRequest request) {
-        if (request.getImages().stream().findFirst().get().getSize() > 0) {
-            var images = request.getImages().stream().map(image ->
-            {
-                try {
-                    return imageService.uploadImage(image);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }).toList();
-
-            var announcement = announcementRepository.save(Announcement.builder()
-                    .club(clubService.getClubById(request.getClubId()))
-                    .title(request.getTitle())
-                    .body(request.getBody())
-                    .images(images).build());
-            return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
-        }
+//        if (request.getImages().stream().findFirst().get().getSize() > 0) {
+//            var images = request.getImages().stream().map(image ->
+//            {
+//                try {
+//                    return imageService.uploadImage(image);
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }).toList();
+//
+//            var announcement = announcementRepository.save(Announcement.builder()
+//                    .club(clubService.getClubById(request.getClubId()))
+//                    .title(request.getTitle())
+//                    .body(request.getBody())
+//                    .images(images).build());
+//            return AnnouncementDtoConverter.convertToAnnouncementDto(announcement);
+//        }
         var announcement = announcementRepository.save(Announcement.builder()
                 .club(clubService.getClubById(request.getClubId()))
                 .title(request.getTitle())
@@ -85,15 +85,15 @@ public class AnnouncementService {
         announcement.setTitle(request.getTitle());
         announcement.setClub(clubService.getClubById(request.getClubId()));
         announcement.setUpdateDate(LocalDateTime.now());
-        if (request.getImages() != null){
-            announcement.setImages(request.getImages().stream().map(image ->
-            {
-                try {
-                    return imageService.uploadImage(image);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }).toList());
+        if (false){//request.getImages() != null
+//            announcement.setImages(request.getImages().stream().map(image ->
+//            {
+//                try {
+//                    return imageService.uploadImage(image);
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }).toList());
         }else{
             announcement.setImages(new ArrayList<>());
         }

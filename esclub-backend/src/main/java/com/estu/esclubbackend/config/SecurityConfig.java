@@ -63,7 +63,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
-        return (web -> web.ignoring().antMatchers("/api/v1/images/**","/api/v1/auth/login"));
+        return (web -> web.ignoring().antMatchers("/api/v1/images/**","/api/v1/auth/login", "/api/v1/auth/register"));
     }
 
     @Bean

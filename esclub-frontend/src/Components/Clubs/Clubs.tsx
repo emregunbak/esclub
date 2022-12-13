@@ -8,6 +8,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { allClubs } from "../../constant/clubsData";
+import {useSelector} from "react-redux/es/hooks/useSelector";
+import {RootState} from "../../app/store";
 function Clubs() {
   const defaultOptions = {
     loop: true,
@@ -17,6 +19,7 @@ function Clubs() {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
   const [clubs, setClubs] = useState<any[]>([]);
   useEffect(() => {
     axios.get('http://localhost:8080/api/v1/clubs', ).then((response)=>{

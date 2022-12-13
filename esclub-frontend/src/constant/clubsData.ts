@@ -36,7 +36,7 @@ export const allClubs = [
     name: "Kimya ve Teknolojileri Kulübü",
   },
   {
-    name: "DetaylarMotorsporları Kulübü",
+    name: "Motorsporları Kulübü",
   },
   {
     name: "Radyo Kulübü",

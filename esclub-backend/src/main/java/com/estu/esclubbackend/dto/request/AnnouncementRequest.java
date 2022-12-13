@@ -24,5 +24,5 @@ public class AnnouncementRequest {
     private String title;
     @NotBlank
     private String body;
-    private List<MultipartFile> images;
+//    private List<MultipartFile> images;
 }
