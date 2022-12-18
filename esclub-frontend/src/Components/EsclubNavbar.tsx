@@ -1,19 +1,26 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
-export default function EsclubNavbar() {
+function EsclubNavbar() {
   return (
     <>
-      <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
+      <Navbar style={{ background: "#4E4E4E" }} variant="dark">
         <Container>
-          <Nav className="me-auto" style={{ marginLeft: "1200px" }}>
-            <Nav.Link href="home">Home</Nav.Link>
-            <Nav.Link href="clubs">Clubs</Nav.Link>
-            <Nav.Link href="events">Events</Nav.Link>
+          <Nav className="ms-auto">
+            <Nav.Link href="/home" style={{ color: "white" }}>
+              Home
+            </Nav.Link>
+            <Nav.Link href="/clubs" style={{ color: "white" }}>
+              Clubs
+            </Nav.Link>
+            <Nav.Link href="/events" style={{ color: "white" }}>
+              Events
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
     </>
   );
 }
+
+export default EsclubNavbar;
