@@ -15,24 +15,33 @@ function ClubBanner() {
   return (
 <>
     <div>
-    <div style={{ marginTop: "150px", marginLeft: "100px" }}>
-      <h3
+    <div style={{ marginTop: "150px", marginLeft: "100px", width:"690px"}}>
+      <h1
         style={{
           color: "#A62732",
           fontFamily: "sans-serif",
           fontWeight: "900",
+          textAlign:"left",
+          fontSize:"30px",
+          
+          
+          
+          
         }}
       >
         {clubName?.toUpperCase()}'nü Yakından Tanı
-      </h3>
-
+      </h1>
+      <h5 style={{ fontFamily: "sans-serif" }}>
+        {" "}
+        {clubName?.toUpperCase()}
+      </h5>
     </div>
   </div>
   <Lottie
     options={defaultOptions}
     height={400}
     width={600}
-    style={{ marginLeft: "800px", marginTop: "-180px" }}
+    style={{ marginLeft: "800px", marginTop: "-200px"}}
   /></>
   );
 }
