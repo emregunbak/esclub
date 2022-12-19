@@ -1,10 +1,10 @@
-.announce-pp{
-    border-radius: 50%;
-    height: 30px;
-    width: 30px;
-    margin-right: 10px;
+.announce-pp {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-right: 10px;
 }
 .deneme:hover {
-    border-width:4px;
-    border-color: #A62732 !important;
-  }
+  border-width: 4px;
+  border-color: #a62732 !important;
+}

@@ -1,40 +1,43 @@
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import EsClubGif from "./img/EsClubGif.gif";
-import logo from "../Components/img/logo.png";
 
 import "../style/welcome-page.css";
 import { FiUser, FiUserPlus } from "react-icons/fi";
+import { Card, Container } from "react-bootstrap";
 
 export default function LandingPage() {
   return (
-    <div className="landing-page">
-      <Navbar variant="dark" className="fixed-top navbar-style">
-        <Container>
-          <Navbar.Brand href="/">
-            <img src={logo} className="logo-s" alt="Logo" />
-          </Navbar.Brand>
-          <Nav variant="tabs" className="m-auto navbar-hover ">
-            <Nav.Link
-              href="Login"
-              style={{
-                color: "black",
-              }}
-            >
-              <FiUser style={{ marginRight: "4px" }} />
-              Login
-            </Nav.Link>
-            <Nav.Link href="Register" style={{ color: "black" }}>
-              <FiUserPlus style={{ marginRight: "4px" }} />
-              Register
-            </Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-      <Container>
+    <>
+      <style type="text/css">
+        {`
+    .navbar-light {
+      background:linear-gradient(to right, #efefef 0%, #545354 50%)no-repeat 0 0 /200%;    }
+    `}
+      </style>
+      <Card className="landing-page">
+        <Navbar bg="light" expand="lg">
+          <Container>
+            <Navbar.Brand href="/" className="text-es">
+              ES CLUB
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link href="Login" className="nav-link">
+                  <FiUser className="lgn-rgs" />
+                  Login
+                </Nav.Link>
+                <Nav.Link href="Register">
+                  <FiUserPlus className="lgn-rgs" />
+                  Register
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
         <img src={EsClubGif} alt="Es Club" className="esc-gif" />
-      </Container>
-    </div>
+      </Card>
+    </>
   );
 }

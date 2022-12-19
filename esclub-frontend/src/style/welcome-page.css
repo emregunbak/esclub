@@ -136,11 +136,33 @@ a:link {
 }
 .esc-gif {
   max-width: 100%;
-  height: auto;
 }
-.logo-s {
-  width: 7%;
-  margin-left: 10%;
+.lgn-rgs {
+  margin-right: 5px;
+}
+.text-es {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    to right top,
+    #750909,
+    #a10909a4,
+    #720707d2,
+    #efefef,
+    #cfc6c6d2
+  );
+  background-size: 50% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 8vw;
+  animation: gradientAnim 7.5s ease alternate infinite;
+}
+
+@keyframes gradientAnim {
+  to {
+    background-position: 100% top;
+  }
 }
 .navbar-style {
   background-color: gray;
@@ -149,4 +171,9 @@ a:link {
 .navbar-hover {
   background-color: #707072;
   border-radius: 10px 10px 0 0;
+}
+.nav-link:hover {
+  background-color: #b6b6b6ce;
+  border-radius: 5px;
+  color: black;
 }
