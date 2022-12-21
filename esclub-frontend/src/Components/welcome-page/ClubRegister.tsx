@@ -1,6 +1,5 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { allClubs } from "../service/clubs";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useEffect, useState } from "react";
@@ -32,15 +31,6 @@ function ClubRegister() {
             title="Clubs"
             menuVariant="light"
           >
-            {allClubs.map((clubs) => (
-              <div className={"clubs-name-area"}>
-                <li className={"nav-item nav-link"}>
-                  <NavDropdown.Item eventKey={clubs.id}>
-                    {clubs.name}
-                  </NavDropdown.Item>
-                </li>
-              </div>
-            ))}
           </NavDropdown>
         </Nav>
         <Form.Group>

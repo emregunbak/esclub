@@ -2,6 +2,8 @@ package com.estu.esclubbackend.service;
 
 import com.estu.esclubbackend.dto.UserDto;
 import com.estu.esclubbackend.dto.converter.UserDtoConverter;
+import com.estu.esclubbackend.dto.request.RegisterRequest;
+import com.estu.esclubbackend.enums.Role;
 import com.estu.esclubbackend.exception.GenericException;
 import com.estu.esclubbackend.model.User;
 import com.estu.esclubbackend.repository.UserRepository;
@@ -15,10 +17,28 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ClubService clubService;
 
-    public UserDto createUser(User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        var savedUser = userRepository.save(user);
+    public UserDto createUser(RegisterRequest registerRequest){
+        User user = User.builder()
+                .username(registerRequest.getUsername())
+                .password(passwordEncoder.encode(registerRequest.getPassword()))
+                .email(registerRequest.getEmail()).build();
+        if (registerRequest.getRole().equalsIgnoreCase("USER")){
+            user.setRole(Role.USER);
+        }
+        else if (registerRequest.getRole().equalsIgnoreCase("ADMIN")){
+            user.setRole(Role.ADMIN);
+        }
+        else if (registerRequest.getRole().equalsIgnoreCase("CLUB_ADMIN")){
+            user.setClub(clubService.getClubById(registerRequest.getClubId()));
+            user.setRole(Role.CLUB_ADMIN);
+        }
+        else {
+            throw new RuntimeException("Role not found!");
+        }
+        User savedUser = userRepository.save(user);
+
         return UserDtoConverter.convertToUserDto(savedUser);
     }
 

@@ -25,4 +25,6 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToOne
+    private Club club;
 }

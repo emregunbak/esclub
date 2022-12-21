@@ -11,7 +11,13 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
+public class RegisterRequest {
+    @NotBlank
     private String username;
+    @NotBlank
     private String password;
+    @NotBlank
+    private String email;
+    private String role;
+    private Long clubId;
 }
