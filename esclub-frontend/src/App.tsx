@@ -7,6 +7,7 @@ import Home from "./Components/Home/Home";
 import LandingPage from "./Components/LandingPage";
 import Login from "./Components/welcome-page/Login";
 import Register from "./Components/welcome-page/Register";
+import AdminPage from "./Components/Admin/AdminPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="clubs/:clubName"  element={<Club/>} />
+          <Route path="admin"  element={<AdminPage/>} />
 
         </Routes>
       </div>

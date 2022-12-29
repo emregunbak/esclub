@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
@@ -18,6 +19,7 @@ public class RegisterRequest {
     private String password;
     @NotBlank
     private String email;
+    @NotNull
     private String role;
     private Long clubId;
 }
