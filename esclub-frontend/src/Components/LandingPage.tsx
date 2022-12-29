@@ -24,7 +24,7 @@ export default function LandingPage() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link href="Login" className="nav-link">
+                <Nav.Link href="Register" className="nav-link">
                   <FiUser className="lgn-rgs" />
                   Login
                 </Nav.Link>

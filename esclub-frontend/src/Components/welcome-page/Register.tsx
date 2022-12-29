@@ -6,8 +6,10 @@ import Logo from "../img/logo.png";
 import { TabContent, TabPane, Nav, NavItem } from "reactstrap";
 import { Row, Col, Container } from "react-bootstrap";
 import UserRegister from "./UserRegister";
-import ClubRegister from "./ClubRegister";
 import classnames from "classnames";
+import Login from "./Login";
+import Lottie from "react-lottie";
+import register from "../../LottieFiles/login.json";
 
 export default class Register extends React.Component<any, any> {
   constructor(props: any) {
@@ -26,6 +28,14 @@ export default class Register extends React.Component<any, any> {
       });
     }
   }
+  defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: register,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   render() {
     return (
       <div id="body">
@@ -35,7 +45,7 @@ export default class Register extends React.Component<any, any> {
               <TabPane tabId="1">
                 <Row>
                   <Col className="login">
-                    <UserRegister></UserRegister>
+                    <Login></Login>
                   </Col>
                   <Col className="page front">
                     <Form className="content">
@@ -44,11 +54,15 @@ export default class Register extends React.Component<any, any> {
                           <img
                             src={Logo}
                             alt="Es Club"
-                            style={{ width: "10rem" }}
+                            style={{ width: "8rem" }}
                           />
                         </a>
                         <h3>Welcome to Es Club</h3>
-                        <p>Click for club registration</p>
+                        <p>
+                          Are you still not a member of ES CLUB where you can
+                          access all clubs and events at Eskisehir Technical
+                          University?
+                        </p>
                         <NavItem>
                           <Button
                             variant="outline-danger"
@@ -59,7 +73,7 @@ export default class Register extends React.Component<any, any> {
                               this.toggle("2");
                             }}
                           >
-                            Club Register
+                            Register
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
@@ -92,11 +106,19 @@ export default class Register extends React.Component<any, any> {
                           <img
                             src={Logo}
                             alt="Es Club"
-                            style={{ width: "10rem" }}
+                            style={{ width: "8rem" }}
                           />
                         </a>
                         <h3>Welcome to Es Club</h3>
-                        <p>Click for user registration</p>
+                        <p>
+                          Click for login
+                          <Lottie
+                            options={this.defaultOptions}
+                            height={323}
+                            width={200}
+                          />
+                        </p>
+
                         <NavItem>
                           <Button
                             style={{ marginRight: "5px" }}
@@ -124,14 +146,14 @@ export default class Register extends React.Component<any, any> {
                               <polyline points="12 8 8 12 12 16" />
                               <line x1="16" y1="12" x2="8" y2="12" />
                             </svg>
-                            User Register
+                            Login
                           </Button>
                         </NavItem>
                       </Form.Group>
                     </Form>
                   </Col>
                   <Col className="registerClass">
-                    <ClubRegister></ClubRegister>
+                    <UserRegister></UserRegister>
                   </Col>
                 </Row>
               </TabPane>

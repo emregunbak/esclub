@@ -46,19 +46,10 @@ function UserRegister() {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" required />
           </Form.Group>
-
-          <Form.Group id="fInput">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirm Password"
-              required
-            />
-          </Form.Group>
         </Form.Group>
-        <a href="login">
+        <a href="Register">
           <Button variant="danger" className="btnLogin" id="register">
-            User Register
+            Register
           </Button>
         </a>
       </Form>
