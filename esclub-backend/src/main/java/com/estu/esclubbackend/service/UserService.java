@@ -3,6 +3,7 @@ package com.estu.esclubbackend.service;
 import com.estu.esclubbackend.dto.UserDto;
 import com.estu.esclubbackend.dto.converter.UserDtoConverter;
 import com.estu.esclubbackend.dto.request.RegisterRequest;
+import com.estu.esclubbackend.dto.request.UpdateUserRoleRequest;
 import com.estu.esclubbackend.enums.Role;
 import com.estu.esclubbackend.exception.GenericException;
 import com.estu.esclubbackend.model.User;
@@ -11,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -53,6 +56,30 @@ public class UserService {
                         .httpStatus(HttpStatus.NOT_FOUND)
                         .errorMessage("User not found by given id!")
                         .build());
+    }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+    public UserDto updateUserRole(UpdateUserRoleRequest request){
+        User user = userRepository.findById(request.getUserId()).get();
+        switch (request.getRole()) {
+            case "USER" -> {
+                user.setRole(Role.USER);
+                user.setClub(null);
+            }
+            case "ADMIN" -> {
+                user.setRole(Role.ADMIN);
+                user.setClub(null);
+            }
+            case "CLUB_ADMIN" -> {
+                user.setClub(clubService.getClubById(request.getClubId()));
+                user.setRole(Role.CLUB_ADMIN);
+            }
+            default -> throw new RuntimeException("Role not found!");
+        }
+        return UserDtoConverter.convertToUserDto(userRepository.save(user));
     }
 }
 
