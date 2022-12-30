@@ -6,8 +6,11 @@ import com.estu.esclubbackend.dto.request.LoginRequest;
 import com.estu.esclubbackend.dto.request.RegisterRequest;
 import com.estu.esclubbackend.service.AuthService;
 import com.estu.esclubbackend.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -28,12 +31,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<UserDto> register(@RequestBody RegisterRequest registerRequest){
-        return ResponseEntity.ok(userService.createUser(registerRequest));
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userService.createUser(registerRequest));
     }
-
-    @GetMapping("/admin")
-    public ResponseEntity<String> admin(){
-        return ResponseEntity.ok("admin");
-    }
-
 }

@@ -5,34 +5,36 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useEffect, useState } from "react";
 import "../../style/welcome-page.css";
 import axios from "axios";
+import { DropdownButton } from "react-bootstrap";
+import DropdownItem from "react-bootstrap/DropdownItem";
 
 function ClubRegister() {
   const [events, setAllEvents] = useState<any[]>();
   const [clubs, setAllClubs] = useState<any[]>();
-  useEffect(() => {
-    axios.get("http://localhost:8080/api/v1/events").then((response: any) => {
-      setAllEvents(response.data);
-    });
-    axios.get("http://localhost:8080/api/v1/clubs").then((response: any) => {
-      setAllClubs(response.data);
-    });
-    console.log(events);
-    console.log(clubs);
-  });
+  // useEffect(() => {
+  //   // axios.get("http://localhost:8080/api/v1/events").then((response: any) => {
+  //   //   setAllEvents(response.data);
+  //   // });
+  //   axios.get("http://localhost:8080/api/v1/clubs").then((response: any) => {
+  //     setAllClubs(response.data);
+  //   });
+  //   // console.log(events);
+  //   // console.log(clubs);
+  // }, []);
   return (
     <>
       <Form className="content">
         <Form.Text>
           <h1>Club Register</h1>
         </Form.Text>
-        <Nav>
-          <NavDropdown
-            id="nav-dropdown-dark-example"
-            title="Clubs"
-            menuVariant="light"
-          >
-          </NavDropdown>
-        </Nav>
+        {/*<Nav>*/}
+        {/*  <NavDropdown*/}
+        {/*    id="nav-dropdown-dark-example"*/}
+        {/*    title="Clubs"*/}
+        {/*    menuVariant="light"*/}
+        {/*  >{clubs?.map((club) => (club.clubName))}*/}
+        {/*  </NavDropdown>*/}
+        {/*</Nav>*/}
         <Form.Group>
           <Form.Group id="fInput">
             <Form.Label>chosen club name </Form.Label>

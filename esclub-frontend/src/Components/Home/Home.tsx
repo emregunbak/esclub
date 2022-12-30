@@ -5,18 +5,15 @@ import EsclubNavbar from "../EsclubNavbar";
 import "../../style/Home.css";
 import { MdAddPhotoAlternate } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
-import { BsPencilSquare } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Banner from "./Banner";
-import { announces } from "../../constant/announceData";
-import { allClubs } from "../../constant/clubsData";
 import {useSelector} from "react-redux/es/hooks/useSelector";
-import {RootState} from "../../app/store";
-import {getResponse} from "../../feature/responseSlice";
+import { RootState } from "../../app/store";
+
 function Home() {
-   const response = useSelector((state: RootState) =>state.response.value[0].response.data.userDto);
+   const count =  useSelector((state: RootState) =>state.response.value);
   const [filteredResults, setFilteredResults] = useState([] as any);
   const [searchInput, setSearchInput] = useState("");
 
@@ -40,8 +37,8 @@ function Home() {
   const [filteredAnnounce, setFilteredAnnounce] = useState<any[]>([]);
   const handleAddAnnounce = async(e: any) => {
     if (e.key === "Enter") {
-      await axios.post("http://localhost:8080/api/v1/announcements/create", { clubId: response.clubId,
-        title: response.userName,
+      await axios.post("http://localhost:8080/api/v1/announcements/create", { clubId: count.data.userDto.clubId,
+        title: count.userName,
       body: e.target.value}, {
 
       }).then(function(response) {
@@ -147,7 +144,7 @@ setFilteredAnnounce(allAnnounces.filter((item) => item.club.clubName === name))
           </Col>
 
           <Col sm="6">
-              {response.role==="CLUB_ADMIN"
+              {count.data.userDto.role==="CLUB_ADMIN"
                   ?
                   <Card
                       border="primary"
@@ -156,10 +153,10 @@ setFilteredAnnounce(allAnnounces.filter((item) => item.club.clubName === name))
                       <Card.Header style={{background: "#A62732", color: "white"}}>
                           {" "}
                           <Image
-                              src={clubs.filter((item)=> item.id===response.clubId)[0]?.logo.imageURL}
+                              src={clubs.filter((item)=> item.id===count.data.userDto.clubId)[0]?.logo.imageURL}
                               className="announce-pp"
                           ></Image>{" "}
-                        {clubs.filter((item)=> item.id===response.clubId)[0]?.shortName
+                        {clubs.filter((item)=> item.id===count.clubId)[0]?.shortName
                         }
                       </Card.Header>
                       <Card.Body>
@@ -187,7 +184,7 @@ setFilteredAnnounce(allAnnounces.filter((item) => item.club.clubName === name))
               >
               <Card.Header style={{ backgroundColor: "#F0F0F0" }}>
               <Image src={item?.club.logo.imageURL} className="announce-pp"></Image>
-            {item?.club.shortName+" - "+ item?.club.clubName}<AiFillDelete size={"18px"} style={{ marginLeft: "4px" }} onClick={()=>announceDelete(item)}/>
+            {item?.club.shortName+" - "+ item?.club.clubName}{count.data.userDto.role==="CLUB_ADMIN" && item.club.id===count.data.userDto.clubId? <AiFillDelete size={"18px"} style={{ marginLeft: "4px" }} onClick={()=>announceDelete(item)}/>: null}
               </Card.Header>
               <Card.Body>
               <Card.Title>
@@ -210,7 +207,7 @@ setFilteredAnnounce(allAnnounces.filter((item) => item.club.clubName === name))
                       <Card.Header style={{ backgroundColor: "#F0F0F0" }}>
                         <Image src={item?.club.logo.imageURL} className="announce-pp"></Image>
                         {item?.club.shortName+" - "+ item?.club.clubName}
-                        {response.clubId===  item.club.id ? <AiFillDelete size={"18px"} style={{ marginLeft: "4px" }} onClick={()=>announceDelete(item)}/>: <div></div>}
+                        {count.data.userDto.role==="CLUB_ADMIN" && item.club.id===count.data.userDto.clubId? <AiFillDelete size={"18px"} style={{ marginLeft: "4px" }} onClick={()=>announceDelete(item)}/>: null}
                       </Card.Header>
                       <Card.Body>
                         <Card.Title>
