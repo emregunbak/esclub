@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { allClubs } from "../../constant/clubsData";
 import {useSelector} from "react-redux/es/hooks/useSelector";
-import {RootState} from "../../app/store";
+
 function Clubs() {
   const defaultOptions = {
     loop: true,
@@ -32,7 +32,6 @@ function Clubs() {
     let path = deneme;
     navigate(path);
   };
-console.log("deneme",clubs)
   return (
     <>
       <EsclubNavbar />

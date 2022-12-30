@@ -7,17 +7,19 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Home from "../Home/Home";
-import {useDispatch} from "react-redux/es/hooks/useDispatch";
-import {getResponse} from "../../feature/responseSlice";
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  
+  increment,
+
+  
+} from '../../features/counter/counterSlice';
 
 function Login() {
-
-  const dispatch = useDispatch()
-  const [responseData, setResponseData] = useState("")
+  const dispatch = useDispatch();
 
   const[userName,setUserName]=useState<any>();
   const[password,setPassword]=useState<any>();
-  const [token,setToken]=useState<any>()
   const navigate = useNavigate();
   const handleLogin=async ()=>{
     await axios.post("http://localhost:8080/api/v1/auth/login", { username: userName,
@@ -27,13 +29,9 @@ function Login() {
         password: password
       }
     }).then(function(response) {
-
-      setToken(response.data.accessToken
-      )
+      dispatch(increment(response))
       navigate("/home")
-      dispatch(getResponse({
-        response
-      }))
+      
     }).catch(function(error) {
       alert('Error on Authentication');
     });

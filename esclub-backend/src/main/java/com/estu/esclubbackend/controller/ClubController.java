@@ -84,7 +84,7 @@ public class ClubController {
 
     @PutMapping("/create-club-info/{clubId}")
     public ResponseEntity<ClubDetailsDto> createClubInfo(
-            @PathVariable Long clubId, @ModelAttribute ClubInfo clubInfo
+            @PathVariable Long clubId, @RequestBody ClubInfo clubInfo
     ){
         return ResponseEntity.ok(clubService.createClubInfo(clubId, clubInfo));
     }
