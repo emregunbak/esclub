@@ -85,7 +85,7 @@ export default class Register extends React.Component<any, any> {
               </TabPane>
               <TabPane tabId="2">
                 <Row>
-                  <Col className="page back">
+                  <Col className="page2 back">
                     <Form className="content">
                       <Form.Group>
                         <a href="/">

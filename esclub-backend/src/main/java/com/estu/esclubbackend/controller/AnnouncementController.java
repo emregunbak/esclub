@@ -8,8 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,9 +35,9 @@ public class AnnouncementController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(announcementService.getAnnouncementById(announcementId));
     }
-
-    @PostMapping(path = "/create", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<AnnouncementDto> createAnnouncement(@Valid @ModelAttribute AnnouncementRequest request){
+//@Valid @ModelAttribute AnnouncementRequest request  consumes = { MediaType.MULTIPART_FORM_DATA_VALUE }
+    @PostMapping(path = "/create")
+    public ResponseEntity<AnnouncementDto> createAnnouncement(@RequestBody AnnouncementRequest request){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(announcementService.createAnnouncement(request));
