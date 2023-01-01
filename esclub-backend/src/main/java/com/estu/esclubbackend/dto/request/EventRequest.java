@@ -1,5 +1,6 @@
 package com.estu.esclubbackend.dto.request;
 
+import com.estu.esclubbackend.enums.EventStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -18,9 +20,6 @@ public class EventRequest {
     private String eventName;
     @NotNull
     private Long clubId;
-
-    @NotNull
-    private String clubName;
 
     private Long eventId;
     @NotBlank
