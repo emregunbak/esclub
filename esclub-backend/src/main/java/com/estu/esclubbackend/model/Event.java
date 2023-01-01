@@ -20,12 +20,8 @@ public class Event extends BaseEntity {
     @JoinColumn(name = "club_id")
     private Club club;
     private String eventName;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.DETACH}, orphanRemoval = true)
     private List<Image> images;
-    @Enumerated(EnumType.STRING)
-    private EventStatus eventStatus;
 }

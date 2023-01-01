@@ -6,7 +6,7 @@ import com.estu.esclubbackend.dto.request.EventRequest;
 import com.estu.esclubbackend.enums.ErrorCode;
 import com.estu.esclubbackend.exception.GenericException;
 import com.estu.esclubbackend.model.Event;
-import com.estu.esclubbackend.projections.EventProjection;
+import com.estu.esclubbackend.model.Image;
 import com.estu.esclubbackend.repository.ClubRepository;
 import com.estu.esclubbackend.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,15 +17,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class EventService {
 
     private final EventRepository eventRepository;
     private final ClubRepository clubRepository;
 
-    public List<EventProjection> getAllEvent() {
-        return eventRepository.findAllBy(EventProjection.class);
+    public List<EventDto> getAllEvent() {
+        return eventRepository.findAll().stream().map(EventDtoConverter:: convertToEventDto).toList();
     }
 
     public EventDto getEventById(Long id) {
@@ -33,12 +32,13 @@ public class EventService {
                 GenericException.builder().errorCode(ErrorCode.ANNOUNCEMENT_NOT_FOUND).build()));
     }
 
-    public EventDto createEvent(EventRequest request) {
-        var club = clubRepository.findById(request.getClubId()).orElseThrow();
+    public EventDto createEvent(EventRequest request, List<Image> images) {
+        var club = clubRepository.findById(request.getClubId()).get();
 
         var event = eventRepository.save(Event.builder()
                 .eventName(request.getEventName())
                 .club(club)
+                .images(images)
                 .description(request.getDescription())
                 .build());
         return EventDtoConverter.convertToEventDto(event);
