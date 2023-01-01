@@ -9,8 +9,7 @@ function EsclubNavbar() {
       <style type="text/css">
         {`
     .navbar-light {
-      background:linear-gradient(to right, #efefef 0%, #545354 50%)no-repeat 0 0 /200%;    }
-    `}
+      background:linear-gradient(to right, #efefef 0%, #545354 50%)no-repeat 0 0 /200%;    }`}
       </style>
       <Navbar bg="light" expand="lg">
         <Container>

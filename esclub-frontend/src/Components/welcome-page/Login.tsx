@@ -3,40 +3,39 @@ import Form from "react-bootstrap/Form";
 import { Container, Row, Col } from "react-bootstrap";
 import Logo from "../img/logo.png";
 import "../../style/welcome-page.css";
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Home from "../Home/Home";
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  
-  increment,
-
-  
-} from '../../features/counter/counterSlice';
+import { useSelector, useDispatch } from "react-redux";
+import { increment } from "../../features/counter/counterSlice";
 
 function Login() {
   const dispatch = useDispatch();
 
-  const[userName,setUserName]=useState<any>();
-  const[password,setPassword]=useState<any>();
+  const [userName, setUserName] = useState<any>();
+  const [password, setPassword] = useState<any>();
   const navigate = useNavigate();
-  const handleLogin=async ()=>{
-    await axios.post("http://localhost:8080/api/v1/auth/login", { username: userName,
-      password: password}, {
-      auth: {
-        username: userName,
-        password: password
-      }
-    }).then(function(response) {
-      dispatch(increment(response))
-      navigate("/home")
-      
-    }).catch(function(error) {
-      alert('Error on Authentication');
-    });
-
-  }
+  const handleLogin = async () => {
+    await axios
+      .post(
+        "http://localhost:8080/api/v1/auth/login",
+        { username: userName, password: password },
+        {
+          auth: {
+            username: userName,
+            password: password,
+          },
+        }
+      )
+      .then(function (response) {
+        dispatch(increment(response));
+        navigate("/home");
+      })
+      .catch(function (error) {
+        alert("Error on Authentication");
+      });
+  };
 
   return (
     <>
@@ -67,31 +66,40 @@ function Login() {
 
                 <Form.Group id="fInput">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="text" placeholder="Enter Username" onChange={(e)=>setUserName(e.target.value)}/>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Username"
+                    onChange={(e) => setUserName(e.target.value)}
+                  />
                 </Form.Group>
 
                 <Form.Group id="fInput">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </Form.Group>
               </Form.Group>
 
-                <Button variant="danger" className="btnLogin" onClick={()=>handleLogin()}>
-                  Login
-                </Button>
-
+              <Button
+                variant="danger"
+                className="btnLogin"
+                onClick={() => handleLogin()}
+              >
+                Login
+              </Button>
             </Form>
-
-            <a href="/" className="aLink">
-              Back
-            </a>
           </Col>
           <Col className="page front">
             <Form className="content">
               <Form.Group>
-                <img src={Logo} alt="Es Club" style={{ width: "10rem" }} />
+                <a href="/" className="aLink">
+                  <img src={Logo} alt="Es Club" style={{ width: "8rem" }} />
+                </a>
                 <h3>Welcome to Es Club</h3>
-                <p>
+                <p style={{ fontFamily: "monospace", fontSize: "13px" }}>
                   Are you still not a member of ES CLUB where you can access all
                   clubs and events at Eskisehir Technical University?
                 </p>
