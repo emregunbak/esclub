@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,13 +22,13 @@ public class SponsorRequest {
     @NotNull
     private String sponsorName;
 
-    private Long sponsorId;
+//    private Long sponsorId;
 
     @NotBlank
     private String description;
 
-    private Image logo;
+    //private MultipartFile logo;
 
     @NotBlank
-    private List<Club> club;
+    private Long clubId;
 }

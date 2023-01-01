@@ -29,7 +29,7 @@ public class Club extends BaseEntity {
     private List<Announcement> announcements;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "club")
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Sponsor> sponsors;
 
     @OneToOne
