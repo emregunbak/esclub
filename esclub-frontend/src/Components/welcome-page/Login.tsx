@@ -99,7 +99,7 @@ function Login() {
                   <img src={Logo} alt="Es Club" style={{ width: "8rem" }} />
                 </a>
                 <h3>Welcome to Es Club</h3>
-                <p>
+                <p style={{ fontFamily: "monospace", fontSize: "13px" }}>
                   Are you still not a member of ES CLUB where you can access all
                   clubs and events at Eskisehir Technical University?
                 </p>

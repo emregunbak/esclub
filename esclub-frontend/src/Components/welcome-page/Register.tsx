@@ -8,6 +8,8 @@ import { Row, Col, Container } from "react-bootstrap";
 import UserRegister from "./UserRegister";
 import ClubRegister from "./ClubRegister";
 import classnames from "classnames";
+import login from "../../LottieFiles/login.json";
+import Lottie from "react-lottie";
 
 export default class Register extends React.Component<any, any> {
   constructor(props: any) {
@@ -27,6 +29,14 @@ export default class Register extends React.Component<any, any> {
     }
   }
   render() {
+    const defaultOptions = {
+      loop: true,
+      autoplay: true,
+      animationData: login,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+      },
+    };
     return (
       <div id="body">
         <Container id="container">
@@ -39,7 +49,10 @@ export default class Register extends React.Component<any, any> {
                       <img src={Logo} alt="Es Club" style={{ width: "8rem" }} />
                     </a>
                     <h3>Welcome to Es Club</h3>
-                    <p>Click for log-in</p>
+                    <p>
+                      Click for log-in
+                      <Lottie options={defaultOptions} width={205} />
+                    </p>
                     <NavItem>
                       <Button
                         style={{ marginRight: "5px" }}
