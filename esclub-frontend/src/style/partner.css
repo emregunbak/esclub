@@ -1,0 +1,50 @@
+@keyframes scroll {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/*  Styling  */
+#logos-home-page .slider {
+    height: auto;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+#logos-home-page .slider:before,
+#logos-home-page .slider:after {
+    content: "";
+    height: 100px;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+}
+
+#logos-home-page .slider:after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+
+#logos-home-page .slider:before {
+    left: 0;
+    top: 0;
+}
+#logos-home-page .slide-track {
+    animation: scroll 3s linear 3s infinite alternate-reverse;
+    display: flex;
+    width: 450px;
+}
+
+#logos-home-page div.slide {
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

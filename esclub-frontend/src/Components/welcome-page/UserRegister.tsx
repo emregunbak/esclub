@@ -70,15 +70,7 @@ const handleRegister = async (username: String, email: String, password: String)
               onChange={(e)=>setPassword(e.target.value)}/>
           </Form.Group>
 
-          <Form.Group id="fInput">
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirm Password"
-              required
-              onChange={(e)=>setConfirmPassword(e.target.value)}
-            />
-          </Form.Group>
+         
         </Form.Group>
 
           <Button variant="danger"

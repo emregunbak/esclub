@@ -48,7 +48,7 @@ public class SecurityConfig {
 //                    auth.antMatchers(HttpMethod.GET,"/api/v1/announcements/**").hasAnyAuthority( "ADMIN","USER","CLUB_ADMIN");
                     auth.antMatchers("/api/v1/announcements/**").permitAll();
                     auth.antMatchers("/api/v1/events/**").permitAll();
-                    auth.antMatchers("/api/v1/sponsors/**").permitAll();
+//                    auth.antMatchers("/api/v1/sponsors/**").permitAll();
 
                     auth.antMatchers("/api/v1/auth/user").hasAnyAuthority("ADMIN", "USER");
                     auth.anyRequest().authenticated();
@@ -65,7 +65,7 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
         return (web -> web.ignoring().antMatchers("/api/v1/images/**","/api/v1/auth/login", "/api/v1/auth/register",
-                "/api/v1/users/**","/api/v1/clubs/**"));
+                "/api/v1/users/**","/api/v1/clubs/**","/api/v1/sponsors/**"));
     }
 
     @Bean

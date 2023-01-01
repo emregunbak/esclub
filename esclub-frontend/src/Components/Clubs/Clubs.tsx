@@ -22,7 +22,7 @@ function Clubs() {
 
   const [clubs, setClubs] = useState<any[]>([]);
   useEffect(() => {
-    axios.get('http://localhost:8080/api/v1/clubs', ).then((response)=>{
+    axios.get('http://localhost:8080/api/v1/clubs/details', ).then((response)=>{
       setClubs(response.data);
     })
 
@@ -32,6 +32,7 @@ function Clubs() {
     let path = deneme;
     navigate(path);
   };
+  console.log("clubs",clubs)
   return (
     <>
       <EsclubNavbar />
@@ -80,8 +81,7 @@ function Clubs() {
                 <Card.Body>
                   <Card.Title>{item.clubName}</Card.Title>
                   <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    {item?.clubInfo?.description.substring(0, 150)}...
                   </Card.Text>
 
                 </Card.Body>
