@@ -9,8 +9,8 @@ public class EventDtoConverter {
         return EventDto.builder()
                 .clubId(event.getClub().getId())
                 .eventId(event.getId())
-                .clubName(event.getClub().getClubName())
                 .eventName(event.getEventName())
+                .images(event.getImages().stream().map(ImageDtoConverter::convertToImageDto).toList())
                 .description(event.getDescription()).build();
     }
 }
