@@ -14,12 +14,10 @@ import java.util.List;
 @Table(name = "sponsor")
 public class Sponsor extends BaseEntity {
     private String sponsorName;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "club_sponsors",
-            joinColumns = @JoinColumn(name = "club_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "sponsor_id",
-                    referencedColumnName = "id"))
-    private List<Club> club;
+    @ManyToOne
+    @JoinColumn(name = "club_id", referencedColumnName = "id")
+    private Club club;
+
     private String description;
 
     @OneToOne

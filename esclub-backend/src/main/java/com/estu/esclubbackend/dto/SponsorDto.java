@@ -18,6 +18,6 @@ public class SponsorDto {
     private Long sponsorId;
     private String sponsorName;
     private String description;
-    private List<Club> club;
-    private Image logo;
+    private String clubName;
+    private ImageDto logo;
 }
