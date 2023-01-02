@@ -26,7 +26,7 @@ public class SponsorController {
     private final ImageService imageService;
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<SponsorProjection>> getAllSponsors() {
+    public ResponseEntity<List<SponsorDto>> getAllSponsors() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(sponsorService.getAllSponsor());

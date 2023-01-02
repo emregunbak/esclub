@@ -25,8 +25,8 @@ public class SponsorService {
     private final ImageService imageService;
     private final ClubService clubService;
 
-    public List<SponsorProjection> getAllSponsor() {
-        return sponsorRepository.findAllBy(SponsorProjection.class);
+    public List<SponsorDto> getAllSponsor() {
+        return sponsorRepository.findAll().stream().map(SponsorDtoConverter::convertToSponsorDto).toList();
     }
 
     public SponsorDto getSponsorById(Long id) {

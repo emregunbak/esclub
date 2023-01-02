@@ -7,6 +7,7 @@ import ClubBanner from "./ClubBanner";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import EditClubModal from "./EditClubModal";
+import "../../style/partner.css";
 function Club(props: any) {
   const { clubName } = useParams();
   const defaultOptions = {
@@ -18,6 +19,7 @@ function Club(props: any) {
     },
   };
   const [oneClub,setOneClub]=useState<any>([])
+    const [sponsor,setSponsor]=useState<any>([])
  useEffect(()=>{
   axios.get('http://localhost:8080/api/v1/clubs/details',
   )
@@ -27,10 +29,18 @@ function Club(props: any) {
       .catch((error) => {
         console.error(error)
       })
+     axios.get('http://localhost:8080/api/v1/sponsors/getAll',
+     )
+         .then((res) => {
+             console.log("response",res)
+             setSponsor(res.data.filter((item: any)=>item.clubName===clubName))
+         })
+         .catch((error) => {
+             console.error(error)
+         })
 
- })
-
-  const deneme = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo,ex. Lorem ipsum dolor sit amet consectetur adipisicing elit.Deleniti ab harum, numquam nobis expedita ratione repellendusblanditiis maxime totam cumque vel. Nostrum similique cumque ipsavoluptate, molestias quae. Neque vitae inventore architecto nostrumnumquam harum error aspernatur, voluptate, reiciendis perferendisofficia alias corporis eum nulla rerum, ipsum quibusdam doloreplaceat. Error maiores dolor ea totam, similique quas voluptatetempore voluptates. Cum eius, nam voluptatem facilis fugiatperferendis nemo ex accusantium modi est veniam iusto ipsa delectusquos, facere nobis iure! Repudiandae dicta id ab error. Suscipitsequi autem sint omnis? Quod itaque sunt cupiditate exercitationemillum voluptate ut eveniet laborum."
+ },[])
+console.log("sponsor",sponsor)
   return (
     <>
     
@@ -52,13 +62,22 @@ function Club(props: any) {
             {" "}
             <b> {oneClub?.clubInfo?.title}</b>
           </h2>
-          <p>
+          <p style={{fontSize:"18px"}}>
             {oneClub?.clubInfo?.description}
           </p> <EditClubModal name={oneClub?.clubInfo?.title
 } description={oneClub?.clubInfo?.description} clubId={oneClub.id}/>
          
         </Col>
       </Row>
+        <div id="logos-home-page">
+            <div className="slider" style={{marginBottom:"150px", marginTop:"150px",marginLeft:"100px"}}>
+                <div className="slide-track">
+                    {sponsor.map((item:any)=>{
+                        return(
+                    <div className="slide"><img  src={item?.logo?.imageURL} alt="" width="188" height="60" /></div>)} )}
+                </div>
+            </div>
+        </div>
     </>
   );
 }

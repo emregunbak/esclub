@@ -112,7 +112,7 @@ setFilteredAnnounce(allAnnounces.filter((item) => item.club.clubName === name))
                     ? filteredResults.map((item: any) => {
                       return (
                           <ListGroup as="ul">
-                            <ListGroup.Item style={{ fontSize: "12px" }}>
+                            <ListGroup.Item style={{ fontSize: "12px", cursor: "pointer" }}>
                               <a
                                   style={{ textDecoration: "none", color: "black" }}
                                   href="#"
@@ -126,9 +126,9 @@ setFilteredAnnounce(allAnnounces.filter((item) => item.club.clubName === name))
                     : clubs.map((item: any) => {
                       return (
                           <ListGroup as="ul">
-                            <ListGroup.Item style={{ fontSize: "12px" }}>
+                          <ListGroup.Item style={{ fontSize: "12px", cursor:"pointer" }}>
                               <a
-                                  style={{ textDecoration: "none", color: "black" }}
+                                  style={{  textDecoration: "none" }}
                                   onClick={() => filterAnnounce(item.clubName)}
                               >
                                 <li>
@@ -184,7 +184,7 @@ setFilteredAnnounce(allAnnounces.filter((item) => item.club.clubName === name))
               >
               <Card.Header style={{ backgroundColor: "#F0F0F0" }}>
               <Image src={item?.club.logo.imageURL} className="announce-pp"></Image>
-            {item?.club.shortName+" - "+ item?.club.clubName}{count.data.userDto.role==="CLUB_ADMIN" && item.club.id===count.data.userDto.clubId? <AiFillDelete size={"18px"} style={{ marginLeft: "4px" }} onClick={()=>announceDelete(item)}/>: null}
+            {item?.club.shortName+" - "+ item?.club.clubName}{(count.data.userDto.role==="CLUB_ADMIN" && item.club.id===count.data.userDto.clubId) || count.data.userDto.role==="ADMIN" ? <AiFillDelete size={"18px"} style={{ marginLeft: "4px" }} onClick={()=>announceDelete(item)}/>: null}
               </Card.Header>
               <Card.Body>
               <Card.Title>
@@ -207,7 +207,7 @@ setFilteredAnnounce(allAnnounces.filter((item) => item.club.clubName === name))
                       <Card.Header style={{ backgroundColor: "#F0F0F0" }}>
                         <Image src={item?.club.logo.imageURL} className="announce-pp"></Image>
                         {item?.club.shortName+" - "+ item?.club.clubName}
-                        {count.data.userDto.role==="CLUB_ADMIN" && item.club.id===count.data.userDto.clubId? <AiFillDelete size={"18px"} style={{ marginLeft: "4px" }} onClick={()=>announceDelete(item)}/>: null}
+                        {(count.data.userDto.role==="CLUB_ADMIN" && item.club.id===count.data.userDto.clubId) || count.data.userDto.role==="ADMIN"? <AiFillDelete size={"18px"} style={{ marginLeft: "4px" }} onClick={()=>announceDelete(item)}/>: null}
                       </Card.Header>
                       <Card.Body>
                         <Card.Title>

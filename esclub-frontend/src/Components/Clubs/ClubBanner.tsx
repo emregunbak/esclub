@@ -15,7 +15,7 @@ function ClubBanner() {
   return (
 <>
     <div>
-    <div style={{ marginTop: "150px", marginLeft: "100px" }}>
+    <div style={{ marginTop: "150px", marginLeft: "100px", width:"600px" }} >
       <h3
         style={{
           color: "#A62732",

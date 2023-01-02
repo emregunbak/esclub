@@ -21,7 +21,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="clubs/:clubName"  element={<Club/>} />
-          <Route path="admin"  element={<AdminPage/>} />
+          <Route path="/admin"  element={<AdminPage/>} />
 
         </Routes>
       </div>

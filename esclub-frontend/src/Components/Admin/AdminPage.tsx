@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import axios from "axios";
+import EsclubNavbar from "../EsclubNavbar";
 
 function AdminPage() {
 
@@ -34,6 +35,7 @@ function AdminPage() {
     }
 
     return (<>
+        <EsclubNavbar/>
             <h1 className="display-4">EsClub Users</h1>
             <div className="container">
                 {status === 200 ? <div className="alert alert-success" role="alert" style={{width:"50%", marginLeft:"25%"}}>

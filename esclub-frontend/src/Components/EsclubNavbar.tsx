@@ -2,8 +2,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "../style/welcome-page.css";
+import {useSelector} from "react-redux/es/hooks/useSelector";
+import {RootState} from "../app/store";
 
 function EsclubNavbar() {
+  const count =  useSelector((state: RootState) =>state.response.value);
   return (
     <>
       <style type="text/css">
@@ -29,6 +32,11 @@ function EsclubNavbar() {
               <Nav.Link href="/events" className="nav-link">
                 Events
               </Nav.Link>
+              {count.data.userDto.role==="ADMIN"
+                  ?<Nav.Link href="/admin" className="nav-link">
+                    Admin
+                  </Nav.Link> : null }
+
             </Nav>
           </Navbar.Collapse>
         </Container>

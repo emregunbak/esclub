@@ -19,7 +19,7 @@ export default function EditClubModal(props: any) {
 
     await axios.put(`http://localhost:8080/api/v1/clubs/create-club-info/${props.clubId}`, {
             title:name,
-            description: "deneme",
+            description: description,
             summary:""
 
 
@@ -34,13 +34,6 @@ export default function EditClubModal(props: any) {
   return (
     
     <>
-     {deneme ? <Alert variant="success" onClose={() => setDeneme(false)} dismissible>
-        <Alert.Heading>Successful</Alert.Heading>
-        <p>
-         Update Successful
-        </p>
-      </Alert>:null}
-    
     {count.data.userDto.role==="ADMIN" ?<Button
         className="nextButton"
         style={{ backgroundColor: "#A62732" }}
