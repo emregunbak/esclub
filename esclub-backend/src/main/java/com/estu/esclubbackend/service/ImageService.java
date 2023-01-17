@@ -16,7 +16,7 @@ public class ImageService {
 
     private final ImageRepository imageRepository;
 
-    private final String downloadURL = "http://localhost:8080/api/v1/images/";
+    private static final String downloadURL = "http://esclub-env-1.eba-agxe4dw3.eu-central-1.elasticbeanstalk.com/api/v1/images/";
 
     public Image uploadImage(MultipartFile file) throws IOException {
         int count = imageRepository.findAllByNameContains(Objects.requireNonNull(file.getOriginalFilename())
